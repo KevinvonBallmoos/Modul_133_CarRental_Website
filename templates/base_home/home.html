@@ -3,7 +3,31 @@
 {% block tab_title %}
     Home
 {% endblock %}
+<title>Home</title>
 
 {% block content %}
+     {% if user.is_authenticated %}
+        Hallo {{ user.username }}
 
+        <div>
+
+            <p>Dein Vorname : {{ user.first_name }}
+                <br>
+                Dein Nachname : {{ user.last_name|safe }}
+            </p>
+        </div>
+
+    {% else %}
+        Du bist nicht authentifiziert.
+    {% endif %}
 {% endblock %}
+<body>
+<form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 10px">Search
+                </button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 150px;
+                color: blue; border-color: blue;">Filter
+                </button>
+            </form>
+</body>
