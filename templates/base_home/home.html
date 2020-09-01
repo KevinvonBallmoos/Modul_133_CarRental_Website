@@ -1,9 +1,10 @@
 {% extends 'base_home/base.html' %}
+{% load static %}
 
 {% block tab_title %}
     Home
 {% endblock %}
-<title>Home</title>
+
 
 {% block content %}
      {% if user.is_authenticated %}

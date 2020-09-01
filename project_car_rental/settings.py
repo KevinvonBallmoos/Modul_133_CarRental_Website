@@ -54,7 +54,7 @@ ROOT_URLCONF = 'project_car_rental.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [os.path.join(BASE_DIR,'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -122,6 +122,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+LOGIN_REDIRECT_URL= 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
