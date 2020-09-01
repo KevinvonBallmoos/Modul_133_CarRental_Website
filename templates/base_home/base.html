@@ -40,10 +40,6 @@
                 <!-- margin ersetzen ? -->
                 <h4><a class="nav-link" href="{% url 'map' %}" style="margin-left: 50px"> Map</a></h4>
             </li>
-            <li class="nav-item " style="margin-left:230px">
-                <h4><a class="nav-link" href="{% url 'login' %}">Logout</a></h4>
-            </li>
-
         </ul>
 
         <!-- search function-->
@@ -52,9 +48,13 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 10px">Search
             </button>
             <!-- margin ersetzen ? -->
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 150px;
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style=";
                 color: blue; border-color: blue;">Filter
             </button>
+              <button class="btn btn-outline-success my-2 my-sm-0" style="margin-left:10px;margin-right: 100px;
+               border-color: red;" type="button"><a href="{% url 'login' %}" style="text-decoration: none; color: red;">Logout</a>
+            </button>
+
         </form>
     </div>
 </nav>

@@ -19,5 +19,3 @@ def login(request):
 
 
 
-
-
