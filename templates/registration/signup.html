@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -12,6 +13,7 @@
 </head>
 
 <body>
+
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
     <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">AutoRent</a>
@@ -45,43 +47,45 @@
             <div class="d-flex justify-content-center form_container">
                 <!-- spans and placeholders -->
                 <form>
-                    <div class="row register-form">
+                    <div style="align-items : center; display: flex; flex-wrap: wrap; justify-content: center ">
                         <!-- first_name -->
                         <div class="form-group">
                             <div class="input-group mb-1">
                                 <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"
+                                    <span class="input-group-text"><i class="fas fa-user"
                                                                       style="width: 14px;"></i></span>
                                 </div>
                                 <label style="height: 30px;">
-                                    <input type="password" name="" class="form-control input_pass" value=""
+                                    <input type="text" name="" class="form-control input_pass" value=""
                                            placeholder="first name">
                                 </label>
                             </div>
                         </div>
+
                         <!-- last_name -->
                         <div class="form-group">
                             <div class="input-group mb-1">
                                 <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"
+                                    <span class="input-group-text"><i class="fas fa-user"
                                                                       style="width: 14px;"></i></span>
                                 </div>
                                 <label style="height: 30px;">
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                           placeholder="confirm password">
+                                    <input type="text" name="" class="form-control input_pass" value=""
+                                           placeholder="last name">
                                 </label>
                             </div>
                         </div>
+
                         <!-- email -->
                         <div class="form-group">
                             <div class="input-group mb-1">
                                 <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"
+                                    <span class="input-group-text"><i class="fas fa-user"
                                                                       style="width: 14px;"></i></span>
                                 </div>
                                 <label style="height: 30px;">
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                           placeholder="confirm password">
+                                    <input type="password" name="" class="form-control" value=""
+                                           placeholder="email">
                                 </label>
                             </div>
                         </div>
@@ -95,11 +99,12 @@
                                                                       style="width: 14px;"></i></span>
                                 </div>
                                 <label style="height: 30px;">
-                                    <input type="text" name="" class="form-control input_user" value=""
+                                    <input type="text" name="" class="form-control input_username" value=""
                                            placeholder="username">
                                 </label>
                             </div>
                         </div>
+
                         <!-- password -->
                         <div class="form-group">
                             <div class="input-group mb-2" style="margin-bottom: 10px">
@@ -108,12 +113,12 @@
                                                                       style="width: 14px;"></i></span>
                                 </div>
                                 <label style="height: 30px;">
-                                    <input type="password" name="" class="form-control input_pass"
-                                           value=""
+                                    <input type="password" name="" class="form-control input_pass" value=""
                                            placeholder="password">
                                 </label>
                             </div>
                         </div>
+
                         <!-- confirm password -->
                         <div class="form-group">
                             <div class="input-group mb-2">
@@ -128,16 +133,19 @@
                                 </label>
                             </div>
                         </div>
-                        <!-- register button -->
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                            <button type="button" name="button" class="btn login_btn">Sign Up</button>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3 login_container">
+                        <button type="button" name="button" class="btn login_btn" style="width: max-content">Sign Up
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<!-- register button -->
+
 
 </body>
 </html>
