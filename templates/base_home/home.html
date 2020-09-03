@@ -4,31 +4,31 @@
 {% block tab_title %}
     Home
 {% endblock %}
-<html lang="">
+
 
 {% block content %}
-     {% if user.is_authenticated %}
-        Hallo {{ user.username }}
+    <div style="text-align: center; font-size: 45px; font-weight: bold">
+        {% if user.is_authenticated %}
+            Willkommen auf AutoRent {{ user.username }} !!
+        {% else %}
+            Du bist nicht authentifiziert.
+        {% endif %}
+        <br>
+        <br>
+        <div class="align-content-center">
+            <form class="form-inline my-2 my-lg-0">
 
-        <div>
-
-            <p>Dein Vorname : {{ user.first_name }}
-                <br>
-                Dein Nachname : {{ user.last_name|safe }}
-            </p>
-        </div>
-
-    {% else %}
-        Du bist nicht authentifiziert.
-    {% endif %}
-{% endblock %}
-<body>
-<form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 10px">Search
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
+                       style="width: 400px; text-align: center; align-items: center">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="width: 100px">Search
                 </button>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 150px;
-                color: blue; border-color: blue;">Filter
-                </button>
+
             </form>
-</body></html>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="
+                color: blue; border-color: blue; width: 100px;">Filter
+            </button>
+        </div>
+    </div>
+{% endblock %}
+
+

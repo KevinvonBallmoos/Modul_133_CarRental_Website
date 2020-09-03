@@ -1,6 +1,5 @@
 {% load static %}
 
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
@@ -11,75 +10,78 @@
     <title>Login</title>
 </head>
 
-<body>
-<!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
-    <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">AutoRent</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <!-- margin ersetzen ? -->
-            <li class="nav-item active">
-                <h4 style="margin-left: 650px">Login</h4>
-            </li>
-            <li class="nav-item active">
-                <h4 style="margin-left: 650px"><a href="{% url 'signup' %}" style="color: black;">Sign Up</a></h4>
-            </li>
-        </ul>
-</nav>
+{% block content %}
 
-<!-- login file -->
-<div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-        <div class="user_card">
-            <div class="d-flex justify-content-center">
-                <div class="brand_logo_container">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRShlE_m4vegQsZ4G6rvjJOim-jUD2HOSCktg&usqp=CAU"
-                         class="brand_logo" alt="Logo">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
+        <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">AutoRent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- margin ersetzen ? -->
+                <li class="nav-item active">
+                    <h4 style="margin-left: 650px">Login</h4>
+                </li>
+                <li class="nav-item active">
+                    <h4 style="margin-left: 650px"><a href="{% url 'signup' %}" style="color: black;">Sign Up</a></h4>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- login file -->
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRShlE_m4vegQsZ4G6rvjJOim-jUD2HOSCktg&usqp=CAU"
+                             class="brand_logo" alt="Logo">
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center form_container">
-                <form>
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <label style="height: 30px;">
-                            <input type="text" name="" class="form-control input_user" value=""
-                                   placeholder="username">
-                        </label>
-                    </div>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <label style="height: 30px;">
-                            <input type="password" name="" class="form-control input_pass" value=""
-                                   placeholder="password">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customControlInline">
-                            <label class="custom-control-label" for="customControlInline">Remember me</label>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="button" name="button" class="btn login_btn">Login</button>
-                    </div>
-                </form>
-            </div>
 
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    <a href="#" class="ml-2"; style="color: black;">Forgot your password ?</a>
+
+                <div class="d-flex justify-content-center form_container">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user" style="width: 14px;"></i></span>
+                            </div>
+                            <label for="{{ form.username.id_for_label }}" style="height: 30px;"></label>
+                            <input type="text" class="form-control input_user"
+                                   id="{{ form.username.id_for_label }}"
+                                   placeholder="username" name="{{ form.username.html_name }}" required>
+                            {% if form.username.errors %}
+                                <small class="form-text text-alert">{{ form.username.errors.0 }}</small>
+                            {% endif %}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key" style="width: 14px" ;></i></span>
+                            </div>
+                            <label for="{{ form.password.id_for_label }}" style="height: 30px"></label>
+                            <input type="password" class="form-control input_pass"
+                                   id="{{ form.password.id_for_label }}"
+                                   placeholder="password" name="{{ form.password.html_name }}" required>
+                            {% if form.password.errors %}
+                                <small class="form-text text-alert">{{ form.password.errors.0 }}</small>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button type="submit" name="button" class="btn btn-primary"
+                                    style=" margin-bottom: 40px; margin-top: 30px; width: max-content; background-color: #c0392b; border: #c0392b">
+                                Login
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</body>
-</html>
+
+
+{% endblock %}
