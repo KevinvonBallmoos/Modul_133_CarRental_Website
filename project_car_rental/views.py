@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from project_car_rental.forms import SignUpForm
+from django.contrib import auth
 
 
 @login_required()
@@ -26,7 +27,6 @@ def signup_view(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
-@login_required()
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request.POST)
@@ -35,3 +35,8 @@ def login_view(request):
             login(request, user)
             return redirect('home')
     return render(request, 'registration/login.html')
+
+
+def logout_view(request):
+    auth.logout(request)
+    return render(request, 'registration/logout.html')

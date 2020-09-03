@@ -1,0 +1,64 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <title>Login</title>
+</head>
+
+{% block content %}
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
+        <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">AutoRent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- margin ersetzen ? -->
+                <li class="nav-item active">
+                    <h4 style="margin-left: 650px">Login</h4>
+                </li>
+                <li class="nav-item active">
+                    <h4 style="margin-left: 650px"><a href="{% url 'signup' %}" style="color: black;">Sign Up</a></h4>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- to login -->
+
+    <form method="post">
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="user_card" style="width: 500px">
+                    <div class="d-flex justify-content-center">
+                        <div class="brand_logo_container">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRShlE_m4vegQsZ4G6rvjJOim-jUD2HOSCktg&usqp=CAU"
+                                 class="brand_logo" alt="Logo">
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <!-- login form -->
+                    <div style="text-align: center">
+                        <h4>Thanks for visiting AutoRent !</h4>
+                        <h4>Click the button below to go back to the Login Page.</h4>
+                        <h4>Have a renty good day !!</h4>
+                        <button type="submit" name="button" class="btn btn-primary"
+                                style=" margin-bottom: 40px; margin-top: 30px; width: 200px; height: 55px; background-color: #c0392b; border: #c0392b;">
+                            <a href="{% url 'login' %}" style="color: white;font-size: 20px"> To Login Page</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
