@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from project_car_rental.forms import SignUpForm
 
 
 @login_required()
@@ -10,9 +11,9 @@ def home(request):
 
 
 def signup_view(request):
-    form = UserCreationForm()
+    form = SignUpForm()
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
@@ -20,6 +21,8 @@ def signup_view(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('home')
+        else:
+            form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
 
 
@@ -32,9 +35,3 @@ def login_view(request):
             login(request, user)
             return redirect('home')
     return render(request, 'registration/login.html')
-
-
-
-
-
-

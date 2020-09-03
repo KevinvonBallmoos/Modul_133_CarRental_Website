@@ -1,10 +1,8 @@
 {% load static %}
 
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
@@ -12,140 +10,184 @@
     <title>SignUp</title>
 </head>
 
-<body>
 
-<!-- navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
-    <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">AutoRent</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <!-- margin ersetzen ? -->
-            <li class="nav-item active">
-                <h4 style="margin-left: 650px">Sign Up</h4>
-            </li>
-            <li class="nav-item active">
-                <h4 style="margin-left: 650px"><a href="{% url 'login' %}" style="color: black;">Login</a></h4>
-            </li>
-        </ul>
-    </div>
-</nav>
+<!-- content -->
+{% block content %}
 
-<!-- login file -->
-<div class="container h-100">
-    <div class="d-flex justify-content-center h-100">
-        <div class="user_card" style="width: 750px;">
-            <div class="d-flex justify-content-center">
-                <div class="brand_logo_container">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRShlE_m4vegQsZ4G6rvjJOim-jUD2HOSCktg&usqp=CAU"
-                         class="brand_logo" alt="Logo">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
+        <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">AutoRent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!-- margin ersetzen ? -->
+                <li class="nav-item active">
+                    <h4 style="margin-left: 650px">Sign Up</h4>
+                </li>
+                <li class="nav-item active">
+                    <h4 style="margin-left: 650px"><a href="{% url 'login' %}" style="color: black;">Login</a></h4>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- error bar -->
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show mt-1" role="alert">
+                    {{ error|escape }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-            <div class="d-flex justify-content-center form_container">
-                <!-- spans and placeholders -->
-                <form>
-                    <div style="align-items : center; display: flex; flex-wrap: wrap; justify-content: center ">
-                        <!-- first_name -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <div class="input-group-append">
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
+
+    <!-- login file -->
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card" style="width: 750px;">
+                <div class="d-flex justify-content-center">
+                    <div class="brand_logo_container">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRShlE_m4vegQsZ4G6rvjJOim-jUD2HOSCktg&usqp=CAU"
+                             class="brand_logo" alt="Logo">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form method="post" action="{% url 'signup' %}">
+                    {% csrf_token %}
+                        <div style="align-items : center; display: flex; flex-wrap: wrap; justify-content: center ">
+
+                            <!-- first_name -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"
                                                                       style="width: 14px;"></i></span>
+                                    </div>
+                                    <label style="height: 30px;">
+                                        <input type="text" name="" class="form-control input_pass" value=""
+                                               placeholder="first name">
+                                    </label>
                                 </div>
-                                <label style="height: 30px;">
-                                    <input type="text" name="" class="form-control input_pass" value=""
-                                           placeholder="first name">
-                                </label>
                             </div>
-                        </div>
 
-                        <!-- last_name -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <div class="input-group-append">
+                            <!-- last_name -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"
                                                                       style="width: 14px;"></i></span>
+                                    </div>
+                                    <label style="height: 30px;">
+                                        <input type="text" name="" class="form-control input_pass" value=""
+                                               placeholder="last name">
+                                    </label>
                                 </div>
-                                <label style="height: 30px;">
-                                    <input type="text" name="" class="form-control input_pass" value=""
-                                           placeholder="last name">
-                                </label>
                             </div>
-                        </div>
 
-                        <!-- email -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <div class="input-group-append">
+                            <!-- email -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"
                                                                       style="width: 14px;"></i></span>
+                                    </div>
+                                    <label style="height: 30px;">
+                                        <input type="text" name="" class="form-control" value=""
+                                               placeholder="email">
+                                    </label>
                                 </div>
-                                <label style="height: 30px;">
-                                    <input type="text" name="" class="form-control" value=""
-                                           placeholder="email">
-                                </label>
                             </div>
-                        </div>
 
 
-                        <!-- username -->
-                        <div class="form-group">
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
+                            <!-- username -->
+                            <div class="form-group">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-user"
                                                                       style="width: 14px;"></i></span>
+                                    </div>
+                                    <label style="height: 30px;" for="{{ form.username.id_for_label }}"></label>
+                                    <input type="text" name="{{ form.username.html_name }}"
+                                           class="form-control input_username"
+                                           placeholder="username" id="{{ form.username.id_for_label }}" required>
                                 </div>
-                                <label style="height: 30px;">
-                                    <input type="text" name="" class="form-control input_username" value=""
-                                           placeholder="username">
-                                </label>
                             </div>
-                        </div>
 
-                        <!-- password -->
-                        <div class="form-group">
-                            <div class="input-group mb-2" style="margin-bottom: 10px">
-                                <div class="input-group-append">
+                            <!-- password -->
+                            <div class="form-group">
+                                <div class="input-group mb-2" style="margin-bottom: 10px">
+                                    <div class="input-group-append">
                                     <span class="input-group-text"><i class="fas fa-key"
                                                                       style="width: 14px;"></i></span>
+                                    </div>
+                                    <label style="height: 30px;" for="{{ form.password1.id_for_label }}"></label>
+                                    <input type="password" name="{{ form.password1.html_name }}"
+                                           class="form-control input_pass"
+                                           placeholder="password" id="{{ form.password1.id_for_label }}" required>
+                                    {% if form.password1.errors %}
+                                        <small class="form-text text-alert">{{ form.password1.errors.0 }}</small>
+                                    {% endif %}
                                 </div>
-                                <label style="height: 30px;">
-                                    <input type="password" name="" class="form-control input_pass" value=""
-                                           placeholder="password">
-                                </label>
+                            </div>
+
+                            <!-- confirm password -->
+                            <div class="form-group">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-append">
+                                    <span class="input-group-text"><i class="fas fa-key"
+                                                                      style="width: 14px;"></i></span>
+                                    </div>
+                                    <label style="height: 30px;" {{ form.password2.id_for_label }}></label>
+                                    <input type="password" name="{{ form.password2.html_name }}"
+                                           class="form-control input_pass"
+                                           placeholder="confirm password" id="{{ form.password2.id_for_label }}"
+                                           required>
+                                    {% if form.password2.errors %}
+                                        <small class="form-text text-alert">{{ form.password2.errors.0 }}</small>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
 
-                        <!-- confirm password -->
-                        <div class="form-group">
-                            <div class="input-group mb-2">
-                                <div class="input-group-append">
-                                    <span class="input-group-text"><i class="fas fa-key"
-                                                                      style="width: 14px;"></i></span>
-                                </div>
-                                <label style="height: 30px;">
-                                    <input type="password" name="" class="form-control input_pass"
-                                           value=""
-                                           placeholder="confirm password">
-                                </label>
-                            </div>
+                        <!-- register button -->
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <button class="btn btn-info" type="submit"
+                                    style="width: max-content; background-color: #c0392b; border: #c0392b">Sign Up
+                            </button>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="submit" name="button" class="btn btn-info" style="width: max-content; background-color: #c0392b; border: #c0392b">Sign Up
-                        </button>
-                    </div>
-                </form>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div style="margin-top: 0">
+     <div class="col" >
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Username Rules</h4>
+                <p>
+                    Required. 150 characters or fewer. Letters,
+                    digits and
+                    @/./+/-/_ only.
+                </p>
+            </div>
+        </div>
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Password Rules</h4>
+            <ul class="">
+                <li>Your password can’t be too similar to your other personal information</li>
+                <li>Your password must contain at least 8 characters</li>
+                <li>Your password can’t be a commonly used password</li>
+                <li>Your password can’t be entirely numeric</li>
+            </ul>
+        </div>
+    </div>
 
-<!-- register button -->
-
-
-</body>
-</html>
+{% endblock %}
