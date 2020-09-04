@@ -10,7 +10,9 @@
     <title>Login</title>
 </head>
 
+<!-- content -->
 {% block content %}
+    <body onresize="myFunction()">
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
@@ -23,17 +25,13 @@
             <ul class="navbar-nav mr-auto">
                 <!-- margin ersetzen ? -->
                 <li class="nav-item active">
-                    <h4 style="margin-left: 650px">Login</h4>
-                </li>
-                <li class="nav-item active">
-                    <h4 style="margin-left: 650px"><a href="{% url 'signup' %}" style="color: black;">Sign Up</a></h4>
+                    <h4 style="margin-left: 630px">Good Bye !!</h4>
                 </li>
             </ul>
         </div>
     </nav>
 
     <!-- to login -->
-
     <form method="post">
         <div class="container h-100">
             <div class="d-flex justify-content-center h-100">
@@ -47,18 +45,21 @@
                     <br>
                     <br>
                     <br>
+
                     <!-- login form -->
                     <div style="text-align: center">
                         <h4>Thanks for visiting AutoRent !</h4>
                         <h4>Click the button below to go back to the Login Page.</h4>
                         <h4>Have a renty good day !!</h4>
                         <button type="submit" name="button" class="btn btn-primary"
-                                style=" margin-bottom: 40px; margin-top: 30px; width: 200px; height: 55px; background-color: #c0392b; border: #c0392b;">
-                            <a href="{% url 'login' %}" style="color: white;font-size: 20px"> To Login Page</a>
+                                style=" margin-bottom: 40px; margin-top: 30px; width: 200px; height: 55px; background-color: #c0392b; border: #c0392b; ">
+                            <a href="{% url 'login' %}" style="color: white;font-size: 20px;"> To Login Page</a>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
+    </form>
+    <script src="{% static 'js/base.js' %}"></script>
+    </body>
 {% endblock %}

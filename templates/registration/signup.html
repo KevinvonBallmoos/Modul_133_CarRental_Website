@@ -13,6 +13,7 @@
 
 <!-- content -->
 {% block content %}
+<body onresize="myFunction()">
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
@@ -25,7 +26,7 @@
             <ul class="navbar-nav mr-auto">
                 <!-- margin ersetzen ? -->
                 <li class="nav-item active">
-                    <h4 style="margin-left: 650px">Sign Up</h4>
+                    <h4 style="margin-left: 640px">Sign Up</h4>
                 </li>
                 <li class="nav-item active">
                     <h4 style="margin-left: 650px"><a href="{% url 'login' %}" style="color: black;">Login</a></h4>
@@ -47,6 +48,28 @@
             {% endfor %}
         {% endfor %}
     {% endif %}
+
+
+    <!-- rules -->
+     <div style="width: 450px; position: absolute;clear: right; margin-top:320px; margin-left: 65px">
+        <div class="col">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading">Username Rules</h4>
+                <p>
+                    Required. 150 characters or fewer. Letters,
+                    digits and @/./+/-/_ only.
+                </p>
+            </div>
+        </div>
+        <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Password Rules</h4>
+            <ul class="">
+                <li>Your password must contain at least 1 Capital letter</li>
+                <li>Your password must contain at least 8 characters</li>
+            </ul>
+        </div>
+    </div>
+
 
     <!-- login file -->
     <div class="container h-100">
@@ -117,7 +140,6 @@
                                 </div>
                             </div>
 
-
                             <!-- username -->
                             <div class="form-group">
                                 <div class="input-group mb-2">
@@ -172,8 +194,8 @@
 
                             <!-- register button -->
                             <div class="d-flex justify-content-center mt-3 login_container">
-                                <button class="btn btn-info"
-                                        style="width: max-content; background-color: #c0392b; border: #c0392b">Sign Up
+                                <button class="btn btn-danger"
+                                        style="width: 140px; background-color: #c0392b; border: #c0392b">Sign Up
                                 </button>
                             </div>
                     </form>
@@ -181,26 +203,7 @@
             </div>
         </div>
     </div>
-    <div style="margin-top: 0">
-        <div class="col">
-            <div class="alert alert-info" role="alert">
-                <h4 class="alert-heading">Username Rules</h4>
-                <p>
-                    Required. 150 characters or fewer. Letters,
-                    digits and
-                    @/./+/-/_ only.
-                </p>
-            </div>
-        </div>
-        <div class="alert alert-warning" role="alert">
-            <h4 class="alert-heading">Password Rules</h4>
-            <ul class="">
-                <li>Your password can’t be too similar to your other personal information</li>
-                <li>Your password must contain at least 8 characters</li>
-                <li>Your password can’t be a commonly used password</li>
-                <li>Your password can’t be entirely numeric</li>
-            </ul>
-        </div>
-    </div>
-
+<script src="{% static 'js/base.js' %}"></script>
+</body>
 {% endblock %}
+
