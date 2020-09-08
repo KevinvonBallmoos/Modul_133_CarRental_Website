@@ -1,0 +1,57 @@
+{% extends 'base_home/base.html' %}
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static 'css/cars.css' %}">
+    <title>Login</title>
+</head>
+
+
+{% block content %}
+
+    <!-- error alert -->
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    <body style="background-color: #60a3bc">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-image">
+                    <thead>
+                    <tr>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Model</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Details</th>
+                        <th scope="col">PS</th>
+                        <th scope="col">Location</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ cars. }}</td>
+                        <td class="w-25">
+                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/sheep-3.jpg"
+                                 class="img-fluid img-thumbnail" alt="Sheep">
+                        </td>
+                        <td>Bootstrap 4 CDN and Starter Template</td>
+                        <td>Cristina</td>
+                        <td>913</td>
+                        <td>2.846</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}
