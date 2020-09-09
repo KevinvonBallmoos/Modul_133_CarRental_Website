@@ -2,5 +2,5 @@ from django.shortcuts import render
 
 
 # Create your views here.
-def map(request):
-    return render(request, 'functions/show.map.html')
+def show_map(request):
+    return render(request, 'functions/show_map.html')
