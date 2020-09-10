@@ -4,5 +4,5 @@ from . import views
 from django.conf.urls import url
 
 urlpatterns = [
-    path('show_map', views.show_map, name='show_map'),
+    path('', views.show_map, name='show_map'),
 ]

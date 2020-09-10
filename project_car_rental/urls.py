@@ -20,13 +20,13 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup/', views.signup_view, name='signup'),
-    path('accounts/login', views.login_view, name='login'),
-    path('accounts/logout', views.logout_view, name='logout'),
-    path('', views.home, name='home'),
-    path('cars', include('cars.urls')),
-    path('map', include('map.urls')),
+                  path('admin/', admin.site.urls),
+                  path('accounts/', include('django.contrib.auth.urls')),
+                  path('accounts/signup/', views.signup_view, name='signup'),
+                  path('accounts/login', views.login_view, name='login'),
+                  path('accounts/logout', views.logout_view, name='logout'),
+                  path('', views.home, name='home'),
+                  path('list_cars', include('cars.urls')),
+                  path('show_map', include('map.urls')),
 
-]+static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+              ] + static(settings.STATIC_URL, document_root=settings.STATIC_URL)
