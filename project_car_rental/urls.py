@@ -29,4 +29,4 @@ urlpatterns = [
                   path('list_cars', include('cars.urls')),
                   path('show_map', include('map.urls')),
 
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_URL)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
