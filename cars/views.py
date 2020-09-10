@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Cars
+from .models import Cars, Map
 from .forms import CarForm
+from map .forms import MapForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -14,6 +15,17 @@ def list_cars(request):
         form.save()
         messages.success(request, 'Car successfully added')
     return render(request, 'functions/list_cars.html', {'cars': cars, 'form': form})
+
+
+def list_map(request):
+    location = Map.objects.all()
+    form = MapForm()
+    if request.method == 'POST':
+        form = MapForm(request.POST, request.FILES)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'Car successfully added')
+    return render(request, 'functions/list_cars.html', {'location': location, 'form': form})
 
 
 def show_cars(request, cars_id):

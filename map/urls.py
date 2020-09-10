@@ -5,4 +5,5 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('', views.show_map, name='show_map'),
+
 ]
