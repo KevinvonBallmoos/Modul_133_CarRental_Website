@@ -9,7 +9,20 @@
 
 {% block content %}
 
-
+    <!-- error alert -->
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    <body>
 
     <!-- Add Cars -->
     <div class="modal fade right" id="modalAddNewCar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -34,7 +47,8 @@
 
                         <!-- brand -->
                         <div class="form-group">
-                            <div class="input-group mb-1">y
+                            <div class="input-group mb-1">
+
                                 <label style="height: 30px;" for="{{ form.brand.id_for_label }}">
                                     <input type="text" name="{{ form.brand.html_name }}"
                                            class="form-control input_pass"
@@ -95,11 +109,12 @@
                         <!-- location -->
                         <div class="form-group">
                             <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ form.location.id_for_label }}">Location :
-                                        <select name="id_location" id="{{ form.location.id_for_label }}" style="width: 250px">
-                                            <option value="" selected="">----------------------------------</option>
-                                        </select>
-                                    </label>
+                                <label style="height: 30px;" for="{{ form.location.id_for_label }}">Location :
+                                    <select name="id_location" id="{{ form.location.id_for_label }}"
+                                            style="width: 250px">
+                                        <option value="" selected="">----------------------------------</option>
+                                    </select>
+                                </label>
                             </div>
                         </div>
 
@@ -108,7 +123,6 @@
                             <button type="button" class="btn-success" style="width: max-content" data-toggle="modal"
                                     data-target="#modalAddLocation">Add Location
                             </button>
-                            <i class="fas fa-car"></i>
                         </div>
 
                         <!--Footer-->
@@ -117,7 +131,6 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
