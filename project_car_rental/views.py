@@ -8,7 +8,7 @@ from django.contrib import auth
 
 """@login_required()"""
 
-
+@login_required()
 def home(request):
     return render(request, 'base_home/home.html')
 

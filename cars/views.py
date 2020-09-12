@@ -17,17 +17,6 @@ def list_cars(request):
     return render(request, 'functions/list_cars.html', {'cars': cars, 'form': form})
 
 
-def list_map(request):
-    location = Map.objects.all()
-    form = MapForm()
-    if request.method == 'POST':
-        form = MapForm(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
-        messages.success(request, 'Car successfully added')
-    return render(request, 'functions/list_cars.html', {'location': location, 'form': form})
-
-
 def show_cars(request, cars_id):
     try:
         cars = Cars.objects.get(pk=cars_id)

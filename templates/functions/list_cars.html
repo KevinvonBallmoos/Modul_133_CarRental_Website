@@ -22,7 +22,7 @@
             {% endfor %}
         {% endif %}
     {% endfor %}
-    <body>
+
 
     <!-- Add Cars -->
     <div class="modal fade right" id="modalAddNewCar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -45,84 +45,87 @@
 
                     <div class="modal-body text-center">
 
-                        <!-- brand -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-
-                                <label style="height: 30px;" for="{{ form.brand.id_for_label }}">
-                                    <input type="text" name="{{ form.brand.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="Brand" id="{{ form.brand.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- model -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <label style="height: 30px;" for="{{ form.model.id_for_label }}">
-                                    <input type="text" name="{{ form.model.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="Model" id="{{ form.model.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- ps -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <label style="height: 30px;" for="{{ form.ps.id_for_label }}">
-                                    <input type="text" name="{{ form.ps.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="Horse Power" id="{{ form.ps.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- details -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <label style="height: 30px;" for="{{ form.details.id_for_label }}">
-                                    <input type="text" name="{{ form.details.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="Details" id="{{ form.details.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- image -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <label style="height: 30px;" for="{{ form.image.id_for_label }}">
-                                    <input type="file" name="{{ form.image.html_name }}"
-                                           class="form-control input_pass"
-                                           id="{{ form.image.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
+                        <p style="color: darkred">Please Check if your Location is available, otherwise you can
+                            create a new one in the form : Add location</p>
                         <!-- location -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <label style="height: 30px;" for="{{ form.location.id_for_label }}">Location :
-                                    <select name="id_location" id="{{ form.location.id_for_label }}"
-                                            style="width: 250px">
-                                        <option value="" selected="">----------------------------------</option>
-                                    </select>
-                                </label>
+                        <div style="margin-left:115px ">
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ form.location.id_for_label }}">
+                                        <select name="id_location" id="{{ form.location.id_for_label }}"
+                                                style="width: 225px; height: 38px">
+                                            <option value="" selected>Location</option>
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+
+
+                            <!-- brand -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ form.brand.id_for_label }}">
+                                        <input type="text" name="{{ form.brand.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Brand" id="{{ form.brand.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- model -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ form.model.id_for_label }}">
+                                        <input type="text" name="{{ form.model.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Model" id="{{ form.model.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- ps -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ form.ps.id_for_label }}">
+                                        <input type="text" name="{{ form.ps.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Horse Power" id="{{ form.ps.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- details -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ form.details.id_for_label }}">
+                                        <input type="text" name="{{ form.details.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Details" id="{{ form.details.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- image -->
+                        <div style="margin-left: 60px">
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ form.image.id_for_label }}">
+                                        <input type="file" name="{{ form.image.html_name }}"
+                                               class="form-control input_pass"
+                                               id="{{ form.image.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-
                         <div class="col-3">
                             <!-- Button to Add a new Location -->
-                            <button type="button" class="btn-success" style="width: max-content" data-toggle="modal"
-                                    data-target="#modalAddLocation">Add Location
-                            </button>
+
                         </div>
 
                         <!--Footer-->
@@ -235,6 +238,9 @@
         <!-- Button to Add a new Car -->
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAddNewCar">
             Add a new Car
+        </button>
+        <button type="button" class="btn btn-success" style="width: max-content" data-toggle="modal"
+                data-target="#modalAddLocation">Add Location
         </button>
 
         <div class="row">

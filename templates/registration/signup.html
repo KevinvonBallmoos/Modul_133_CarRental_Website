@@ -13,7 +13,7 @@
 
 <!-- content -->
 {% block content %}
-<body onresize="myFunction()">
+    <body onresize="myFunction()">
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
@@ -51,7 +51,7 @@
 
 
     <!-- rules -->
-     <div style="width: 450px; position: absolute;clear: right; margin-top:320px; margin-left: 65px">
+    <div style="width: 450px; position: absolute;clear: right; margin-top:320px; margin-left: 65px">
         <div class="col">
             <div class="alert alert-info" role="alert">
                 <h4 class="alert-heading">Username Rules</h4>
@@ -66,6 +66,12 @@
             <ul class="">
                 <li>Your password must contain at least 1 Capital letter</li>
                 <li>Your password must contain at least 8 characters</li>
+            </ul>
+        </div>
+         <div class="alert alert-warning" role="alert">
+            <h4 class="alert-heading">Password Rules</h4>
+            <ul class="">
+                <li>No space in Username</li>
             </ul>
         </div>
     </div>
@@ -194,7 +200,7 @@
 
                             <!-- register button -->
                             <div class="d-flex justify-content-center mt-3 login_container">
-                                <button class="btn btn-danger"
+                                <button class="btn btn-danger" type="submit"
                                         style="width: 140px; background-color: #c0392b; border: #c0392b">Sign Up
                                 </button>
                             </div>
@@ -203,7 +209,7 @@
             </div>
         </div>
     </div>
-<script src="{% static 'js/base.js' %}"></script>
-</body>
+    <script src="{% static 'js/base.js' %}"></script>
+    </body>
 {% endblock %}
 
