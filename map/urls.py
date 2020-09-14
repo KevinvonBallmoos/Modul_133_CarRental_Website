@@ -4,6 +4,6 @@ from . import views
 from django.conf.urls import url
 
 urlpatterns = [
-    path('', views.show_map, name='show_map'),
+    path(r'', views.default_map, name='map'),
 
 ]

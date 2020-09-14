@@ -27,6 +27,6 @@ urlpatterns = [
                   path('accounts/logout/', views.logout_view, name='logout'),
                   path('', views.home, name='home'),
                   path('list_cars', include('cars.urls')),
-                  path('show_map', include('map.urls')),
+                  path('map', include('map.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
