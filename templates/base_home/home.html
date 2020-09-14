@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
           integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Home</title>
 </head>
 
@@ -58,18 +62,33 @@
         {% endif %}
         <br>
         <br>
-        <div style="align-items : center; display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 25px ">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"
-                       style="width: 400px; text-align: center; align-items: center; border-color: red; ">
-                <button class="btn btn-success my-2 my-sm-0" type="submit"
-                        style="width: 100px;">Search
-                </button>
-                <button class="btn btn-danger" type="submit" style="
+        <div class="container">
+            <div style="align-items : center; display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 25px ">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" id="#input" type="search" placeholder="Search.."
+                           aria-label="Search"
+                           style="width: 400px; text-align: center; align-items: center; border-color: red; ">
+                    <button class="btn btn-success my-2 my-sm-0" type="submit"
+                            style="width: 100px;">Search
+                    </button>
+                    <button class="btn btn-danger" type="submit" style="
                  width: 100px; margin-left: 10px">Filter
-                </button>
-            </form>
+                    </button>
+                    <div id="searchdiv"></div>
+                </form>
+            </div>
         </div>
+
+        <script>
+            $(document).ready(function () {
+                $("#input").on("keyup", function () {
+                    let value = $(this).val().toLowerCase();
+                    $("#searchdiv *").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
+                });
+            });
+        </script>
     </div>
     <script src="{% static 'js/base.js' %}"></script>
     </body>

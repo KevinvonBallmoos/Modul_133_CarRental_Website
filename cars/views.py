@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
+"""Add a new Car"""
+
+
 def list_cars(request):
     cars = Cars.objects.all()
     form = CarForm()
@@ -15,6 +18,9 @@ def list_cars(request):
         form.save()
         messages.success(request, 'Car successfully added')
     return render(request, 'functions/list_cars.html', {'cars': cars, 'form': form})
+
+
+"""Update car"""
 
 
 def show_cars(request, cars_id):

@@ -53,7 +53,7 @@
                                 <div class="input-group mb-1">
                                     <label style="height: 30px;" for="{{ form.location.id_for_label }}">
                                         <select name="id_location" id="{{ form.location.id_for_label }}"
-                                                style="width: 225px; height: 38px">
+                                                style="width: 200px; height: 38px">
                                             <option value="" selected>Location</option>
                                         </select>
                                     </label>
@@ -129,7 +129,7 @@
                         </div>
 
                         <!--Footer-->
-                        <div class="modal-footer justify-content-center">
+                        <div class="modal-footer justify-content-center" style="margin-right: 25px;">
                             <button type="submit" class="btn btn-primary">Add Car</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
@@ -160,72 +160,73 @@
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="modal-body text-center">
-
-                        <!-- plz -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <div class="input-group-append">
+                        <div style="margin-left:115px ">
+                            <!-- plz -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ form.plz.id_for_label }}">
+                                        <input type="text" name="{{ form.plz.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="PLZ" id="{{ form.plz.id_for_label }}"
+                                               required>
+                                    </label>
                                 </div>
-                                <label style="height: 30px;" for="{{ form.plz.id_for_label }}">
-                                    <input type="text" name="{{ form.plz.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="PLZ" id="{{ form.plz.id_for_label }}"
-                                           required>
-                                </label>
+                            </div>
+
+                            <!-- location -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ form.location.id_for_label }}">
+                                        <input type="text" name="{{ form.location.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Location" id="{{ form.location.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- address -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ form.address.id_for_label }}">
+                                        <input type="text" name="{{ form.address.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Address" id="{{ form.address.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- country -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ form.country.id_for_label }}">
+                                        <input type="text" name="{{ form.country.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Country" id="{{ form.country.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
+                                <i class="fas fa-car"></i>
                             </div>
                         </div>
-
-                        <!-- location -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <div class="input-group-append">
-                                </div>
-                                <label style="height: 30px;" for="{{ form.location.id_for_label }}">
-                                    <input type="text" name="{{ form.location.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="Location" id="{{ form.location.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- address -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <div class="input-group-append">
-                                </div>
-                                <label style="height: 30px;" for="{{ form.address.id_for_label }}">
-                                    <input type="text" name="{{ form.address.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="Address" id="{{ form.address.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
-                        <!-- country -->
-                        <div class="form-group">
-                            <div class="input-group mb-1">
-                                <div class="input-group-append">
-                                </div>
-                                <label style="height: 30px;" for="{{ form.country.id_for_label }}">
-                                    <input type="text" name="{{ form.country.html_name }}"
-                                           class="form-control input_pass"
-                                           placeholder="Country" id="{{ form.country.id_for_label }}"
-                                           required>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="col-3">
-                            <i class="fas fa-car"></i>
-                        </div>
-
                         <!--Footer-->
-                        <div class="modal-footer justify-content-center">
+                        <div class="modal-footer justify-content-center" style="margin-right: 45px;">
                             <button type="submit" class="btn btn-primary">Add Location</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
+
                     </div>
                 </form>
             </div>

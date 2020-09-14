@@ -5,12 +5,15 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
-# Create your views here.
+"""Map shows"""
 
 
 def default_map(request):
     mapbox_access_token = 'pk.eyJ1Ijoic3Vic2NhcGVyIiwiYSI6ImNrZXdpbmpvODQzb2MycnBpb2VjZWVkNGcifQ.UsJOjWVXbrP7wmlIzWb2wQ'
     return render(request, 'functions/map.html', {'mapbox_access_token': mapbox_access_token})
+
+
+"""Add a new Location"""
 
 
 def list_map(request):
