@@ -24,9 +24,9 @@ urlpatterns = [
                   path('accounts/', include('django.contrib.auth.urls')),
                   path('accounts/signup/', views.signup_view, name='signup'),
                   path('accounts/login/', views.login_view, name='login'),
-                  path('accounts/logout/', views.logout_view, name='logout'),
+                  path('accounts/logout', views.logout_view, name='logout'),
                   path('', views.home, name='home'),
-                  path('list_cars', include('cars.urls')),
-                  path('map', include('map.urls')),
+                  path('functions/list_cars', include('cars.urls')),
+                  path('functions/map', include('map.urls')),
 
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

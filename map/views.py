@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Map
 from .forms import MapForm
 from django.contrib import messages
@@ -24,4 +24,4 @@ def list_map(request):
     if form.is_valid():
         form.save()
         messages.success(request, 'Location successfully added')
-    return render(request, 'functions/list_cars.html', {'location': location, 'form': form})
+    return redirect('/functions/list_cars', {'location': location, 'form': form})

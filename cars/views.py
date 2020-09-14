@@ -20,6 +20,11 @@ def list_cars(request):
     return render(request, 'functions/list_cars.html', {'cars': cars, 'form': form})
 
 
+def list_map(request):
+    form = MapForm()
+    return render(request, 'functions/list_cars.html', {'form': form})
+
+
 """Update car"""
 
 
