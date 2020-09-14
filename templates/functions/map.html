@@ -8,8 +8,16 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet'/>
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+    <link rel="stylesheet"
+          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+          type="text/css"/>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 </head>
+
 <body style="background-color: #60a3bc">
+
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
     <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">
@@ -41,31 +49,22 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="margin-right: 10px">Search
             </button>
-            <!-- margin ersetzen ? -->
             <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" style=";
                  ">Filter
             </button>
             <button class="btn btn-outline-primary my-2 my-sm-0" style="margin-left:10px;margin-right: 100px;
                " type="submit"><a href="{% url 'logout' %}" style="text-decoration: none; ">Logout</a>
             </button>
-
         </form>
     </div>
 </nav>
 
-<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
-<link
-        rel="stylesheet"
-        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
-        type="text/css"
-/>
-
-<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<!-- Map -->
 <div style="position: center">
-<div id='map' style='width: 100%; height: 845px;' class=""></div>
+    <div id='map' style='width: 100%; height: 845px;' class=""></div>
 </div>
+
+<!-- Additional Script -->
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic3Vic2NhcGVyIiwiYSI6ImNrZXdpbmpvODQzb2MycnBpb2VjZWVkNGcifQ.UsJOjWVXbrP7wmlIzWb2wQ';
     var map = new mapboxgl.Map({
