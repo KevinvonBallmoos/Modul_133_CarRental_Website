@@ -17,11 +17,12 @@ def default_map(request):
 
 
 def list_map(request):
-    location = Map.objects.all()
     form = MapForm()
     if request.method == 'POST':
         form = MapForm(request.POST, request.FILES)
     if form.is_valid():
         form.save()
         messages.success(request, 'Location successfully added')
-    return redirect('/functions/list_cars', {'location': location, 'form': form})
+    else:
+        messages.error(request, form.errors.as_data())
+    return redirect('/functions/list_cars')

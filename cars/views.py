@@ -1,29 +1,28 @@
 from django.shortcuts import render, redirect
 from .models import Cars, Map
 from .forms import CarForm
-from map .forms import MapForm
+from map.forms import MapForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 
 """Add a new Car"""
 
 
 def list_cars(request):
     cars = Cars.objects.all()
-    form = CarForm()
+    car_form = CarForm()
+    map_form = MapForm()
     if request.method == 'POST':
-        form = CarForm(request.POST, request.FILES)
-    if form.is_valid():
-        form.save()
+        car_form = CarForm(request.POST, request.FILES)
+    if car_form.is_valid():
+        car_form.save()
         messages.success(request, 'Car successfully added')
-    return render(request, 'functions/list_cars.html', {'cars': cars, 'form': form})
+    return render(request, 'functions/list_cars.html', {'cars': cars, 'car_form': car_form, 'map_form': map_form})
 
 
-def list_map(request):
+"""def list_map(request):
     form = MapForm()
-    return render(request, 'functions/list_cars.html', {'form': form})
-
+    return render(request, 'functions/list_cars.html', {'form': form})"""
 
 """Update car"""
 
