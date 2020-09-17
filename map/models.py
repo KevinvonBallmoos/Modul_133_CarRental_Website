@@ -8,4 +8,4 @@ class Map(models.Model):
     country = models.CharField(max_length=255)
 
     def __str__(self):
-        return '{}{}'.format(self.plz, self.location, self.address, self.country)
+        return '{}'.format(self.location)

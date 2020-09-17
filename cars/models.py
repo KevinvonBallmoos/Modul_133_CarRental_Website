@@ -11,4 +11,4 @@ class Cars(models.Model):
     location = models.ForeignKey(Map, on_delete=models.RESTRICT)
 
     def __str__(self):
-        return '{}{}'.format(self.brand, self.model, self.ps, self.details, self.image, self.location)
+        return '{}{}'.format(self.brand, self.model)
