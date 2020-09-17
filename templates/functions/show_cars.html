@@ -1,23 +1,99 @@
-{% extends 'base_home/base.html' %}
+{% load static %}
 
-{% block tab_title %}
-    Cars
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="{% static 'css/show_cars.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <title>Cars</title>
+</head>
 
 
 {% block content %}
 
-    <div style="background-color: #60a3bc">
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
+        <a class="navbar-brand" href="{% url 'home' %}" style="margin-left: 120px; font-size: 25px; font-weight: bold ">
+            AutoRent</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <!-- Add Cars -->
-    <div class="modal fade right" id="modalAddNewLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <!-- navbar buttons -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <!-- margin ersetzen ? -->
+                    <h4><a class="nav-link" href="{% url 'home' %}"
+                           style="margin-left: 520px; margin-right: 50px">Home</a>
+                    </h4>
+                </li>
+                <li class="nav-item">
+                    <h4><a class="nav-link" href="{% url 'list_cars' %}">Cars</a></h4>
+                </li>
+                <li class="nav-item">
+                    <!-- margin ersetzen ? -->
+                    <h4><a class="nav-link" href="{% url 'map' %}" style="margin-left: 50px"> Map</a></h4>
+                </li>
+            </ul>
+
+            <!-- search function-->
+            <form class="form-inline my-2 my-lg-0" method="post">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-right: 10px">Search
+                </button>
+                <!-- margin ersetzen ? -->
+                <button class="btn btn-outline-danger my-2 my-sm-0" type="button" style=";
+                 ">Filter
+                </button>
+                <button class="btn btn-outline-primary my-2 my-sm-0" style="margin-left:10px;margin-right: 100px;
+               " type="submit"><a href="{% url 'logout' %}" style="text-decoration: none; ">Logout</a>
+                </button>
+
+            </form>
+        </div>
+    </nav>
+
+
+    <!-- Car details -->
+    <div class="d-flex justify-content-center h-100">
+        <div class="background-for-details">
+            <h2 style="margin-top: -55px">{{ car.brand }} {{ car.model }}</h2>
+            <div id="next-to-image">
+                <img src="{{ car.image.url }}" alt=""
+                     style="width: 600px; height: 375px; margin-top: 20px; float: left;">
+                <ul style="margin-left: 650px; margin-top: 100px" class="color">
+                    <li>PS: {{ car.ps }}</li>
+                    <br>
+                    <li>Details: {{ car.details }}</li>
+                    <br>
+                    <li>Ort: {{ car.location }}</li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-success" style="width: max-content; margin-top: 20px"
+                    data-toggle="modal"
+                    data-target="#modalUpdateCar">Update Car
+            </button>
+        </div>
+    <a href="{% url 'list_cars' %}" class="btn btn-light" style="width: max-content; height: max-content; margin-top: 50px; ">Back to Cars</a>
+    </div>
+
+
+    <!-- Update Cars or Location -->
+    <div class="modal fade right" id="modalUpdateCar" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
             <div class="modal-content">
                 <!--Header-->
-                <div class="modal-header">
-                    <p class="heading">Adding Location
-                    </p>
+                <div class="modal-header" style="background-color: #005cbf">
+                    <h4 class="heading">Add a new Car
+                    </h4>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" class="white-text">&times;</span>
@@ -25,34 +101,121 @@
                 </div>
 
                 <!--Body-->
-
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-3">
-                                {{ form.as_p }}
-                                <button type="submit" class="btn-success">Add Location</button>
 
-                                <p class="text-center"><i class="fas fa-car"></i></p>
+                    <div class="modal-body text-center">
+
+                        <p style="color: darkred">Please Check if your Location is available, otherwise
+                            you can
+                            create a new one in : Add location</p>
+                        <!-- location -->
+                        <div style="margin-left:115px ">
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;"
+                                           for="{{ car_form.location.id_for_label }}">
+                                        <select name="{{ car_form.location.html_name }}"
+                                                id="{{ car_form.location.id_for_label }}"
+                                                style="width: 200px; height: 38px">
+                                            {% for x, y in car_form.fields.location.choices %}
+                                                <option value="{{ x }}">{{ y }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                    <button type="button" class="btn btn-success"
+                                            style="width: max-content"
+                                            data-toggle="modal"
+                                            data-target="#modalAddLocation">Add Location
+                                    </button>
+                                </div>
                             </div>
 
-                            <div class="col-9">
-                                <p>Do you need more time to make a purchase decision?</p>
-                                <p>No pressure, your product will be waiting for you in the cart.</p>
+
+                            <!-- brand -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;"
+                                           for="{{ car_form.brand.id_for_label }}">
+                                        <input type="text" name="{{ car_form.brand.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Brand"
+                                               id="{{ car_form.brand.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- model -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;"
+                                           for="{{ car_form.model.id_for_label }}">
+                                        <input type="text" name="{{ car_form.model.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Model"
+                                               id="{{ car_form.model.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- ps -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ car_form.ps.id_for_label }}">
+                                        <input type="text" name="{{ car_form.ps.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Horse Power"
+                                               id="{{ car_form.ps.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- details -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;"
+                                           for="{{ car_form.details.id_for_label }}">
+                                        <input type="text" name="{{ car_form.details.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Details"
+                                               id="{{ car_form.details.id_for_label }}"
+                                               required style="height: 60px;">
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- image -->
+                        <div style="margin-left: 60px">
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px; margin-top: 20px"
+                                           for="{{ car_form.image.id_for_label }}">
+                                        <input type="file" name="{{ car_form.image.html_name }}"
+                                               class="form-control input_pass"
+                                               id="{{ car_form.image.id_for_label }}"
+                                               required>
+                                    </label>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                        <div class="col-3">
+                        </div>
 
-                    <!--Footer-->
-                    <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Car</button>
+                        <!--Footer-->
+                        <div class="modal-footer justify-content-center" style="margin-right: 25px;">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                            </button>
+                        </div>
                     </div>
                 </form>
-
             </div>
         </div>
-    </div>
-    </div>
+
+
 {% endblock %}

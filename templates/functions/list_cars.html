@@ -40,23 +40,30 @@
                 </div>
 
                 <!--Body-->
-                <form method="post" enctype="multipart/form-data" >
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <div class="modal-body text-center">
 
                         <p style="color: darkred">Please Check if your Location is available, otherwise you can
-                            create a new one in the form : Add location</p>
+                            create a new one in : Add location</p>
                         <!-- location -->
                         <div style="margin-left:115px ">
                             <div class="form-group">
                                 <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ form.location.id_for_label }}">
-                                        <select name="id_location" id="{{ form.location.id_for_label }}"
+                                    <label style="height: 30px;" for="{{ car_form.location.id_for_label }}">
+                                        <select name="{{ car_form.location.html_name }}"
+                                                id="{{ car_form.location.id_for_label }}"
                                                 style="width: 200px; height: 38px">
-                                            <option value="" selected>Location</option>
+                                            {% for x, y in car_form.fields.location.choices %}
+                                                <option value="{{ x }}">{{ y }}</option>
+                                            {% endfor %}
                                         </select>
                                     </label>
+                                    <button type="button" class="btn btn-success" style="width: max-content"
+                                            data-toggle="modal"
+                                            data-target="#modalAddLocation">Add Location
+                                    </button>
                                 </div>
                             </div>
 
@@ -64,10 +71,10 @@
                             <!-- brand -->
                             <div class="form-group">
                                 <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ form.brand.id_for_label }}">
-                                        <input type="text" name="{{ form.brand.html_name }}"
+                                    <label style="height: 30px;" for="{{ car_form.brand.id_for_label }}">
+                                        <input type="text" name="{{ car_form.brand.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="Brand" id="{{ form.brand.id_for_label }}"
+                                               placeholder="Brand" id="{{ car_form.brand.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
@@ -76,10 +83,10 @@
                             <!-- model -->
                             <div class="form-group">
                                 <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ form.model.id_for_label }}">
-                                        <input type="text" name="{{ form.model.html_name }}"
+                                    <label style="height: 30px;" for="{{ car_form.model.id_for_label }}">
+                                        <input type="text" name="{{ car_form.model.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="Model" id="{{ form.model.id_for_label }}"
+                                               placeholder="Model" id="{{ car_form.model.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
@@ -88,10 +95,10 @@
                             <!-- ps -->
                             <div class="form-group">
                                 <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ form.ps.id_for_label }}">
-                                        <input type="text" name="{{ form.ps.html_name }}"
+                                    <label style="height: 30px;" for="{{ car_form.ps.id_for_label }}">
+                                        <input type="text" name="{{ car_form.ps.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="Horse Power" id="{{ form.ps.id_for_label }}"
+                                               placeholder="Horse Power" id="{{ car_form.ps.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
@@ -100,32 +107,32 @@
                             <!-- details -->
                             <div class="form-group">
                                 <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ form.details.id_for_label }}">
-                                        <input type="text" name="{{ form.details.html_name }}"
+                                    <label style="height: 30px;" for="{{ car_form.details.id_for_label }}">
+                                        <input type="text" name="{{ car_form.details.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="Details" id="{{ form.details.id_for_label }}"
-                                               required>
+                                               placeholder="Details" id="{{ car_form.details.id_for_label }}"
+                                               required style="height: 60px;">
                                     </label>
                                 </div>
                             </div>
 
                         </div>
+
                         <!-- image -->
                         <div style="margin-left: 60px">
                             <div class="form-group">
                                 <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ form.image.id_for_label }}">
-                                        <input type="file" name="{{ form.image.html_name }}"
+                                    <label style="height: 30px; margin-top: 20px"
+                                           for="{{ car_form.image.id_for_label }}">
+                                        <input type="file" name="{{ car_form.image.html_name }}"
                                                class="form-control input_pass"
-                                               id="{{ form.image.id_for_label }}"
+                                               id="{{ car_form.image.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="col-3">
-                            <!-- Button to Add a new Location -->
-
                         </div>
 
                         <!--Footer-->
@@ -157,19 +164,20 @@
                 </div>
 
                 <!--Body-->
-                <form method="post" enctype="multipart/form-data" action="{% url 'list_map' %}" >
+                <form method="post" enctype="multipart/form-data" action="{% url 'list_map' %}">
                     {% csrf_token %}
                     <div class="modal-body text-center">
                         <div style="margin-left:115px ">
+
                             <!-- plz -->
                             <div class="form-group">
                                 <div class="input-group mb-1">
                                     <div class="input-group-append">
                                     </div>
-                                    <label style="height: 30px;" for="{{ form.plz.id_for_label }}">
-                                        <input type="text" name="{{ form.plz.html_name }}"
+                                    <label style="height: 30px;" for="{{ map_form.plz.id_for_label }}">
+                                        <input type="text" name="{{ map_form.plz.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="PLZ" id="{{ form.plz.id_for_label }}"
+                                               placeholder="PLZ" id="{{ map_form.plz.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
@@ -180,10 +188,10 @@
                                 <div class="input-group mb-1">
                                     <div class="input-group-append">
                                     </div>
-                                    <label style="height: 30px;" for="{{ form.location.id_for_label }}">
-                                        <input type="text" name="{{ form.location.html_name }}"
+                                    <label style="height: 30px;" for="{{ map_form.location.id_for_label }}">
+                                        <input type="text" name="{{ map_form.location.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="Location" id="{{ form.location.id_for_label }}"
+                                               placeholder="Location" id="{{ map_form.location.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
@@ -194,10 +202,10 @@
                                 <div class="input-group mb-1">
                                     <div class="input-group-append">
                                     </div>
-                                    <label style="height: 30px;" for="{{ form.address.id_for_label }}">
-                                        <input type="text" name="{{ form.address.html_name }}"
+                                    <label style="height: 30px;" for="{{ map_form.address.id_for_label }}">
+                                        <input type="text" name="{{ map_form.address.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="Address" id="{{ form.address.id_for_label }}"
+                                               placeholder="Address" id="{{ map_form.address.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
@@ -208,25 +216,24 @@
                                 <div class="input-group mb-1">
                                     <div class="input-group-append">
                                     </div>
-                                    <label style="height: 30px;" for="{{ form.country.id_for_label }}">
-                                        <input type="text" name="{{ form.country.html_name }}"
+                                    <label style="height: 30px;" for="{{ map_form.country.id_for_label }}">
+                                        <input type="text" name="{{ map_form.country.html_name }}"
                                                class="form-control input_pass"
-                                               placeholder="Country" id="{{ form.country.id_for_label }}"
+                                               placeholder="Country" id="{{ map_form.country.id_for_label }}"
                                                required>
                                     </label>
                                 </div>
                             </div>
-
                             <div class="col-3">
                                 <i class="fas fa-car"></i>
                             </div>
                         </div>
+
                         <!--Footer-->
                         <div class="modal-footer justify-content-center" style="margin-right: 45px;">
                             <button type="submit" class="btn btn-primary">Add Location</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
-
                     </div>
                 </form>
             </div>
@@ -240,9 +247,7 @@
         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAddNewCar">
             Add a new Car
         </button>
-        <button type="button" class="btn btn-success" style="width: max-content" data-toggle="modal"
-                data-target="#modalAddLocation">Add Location
-        </button>
+
 
         <div class="row">
             <div class="col-12">
@@ -253,17 +258,19 @@
                         <th scope="col">Image</th>
                         <th scope="col">Brand</th>
                         <th scope="col">Location</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for author in authors %}
+                    {% for car in cars %}
                         <tr>
-                            <td>{{ cars.cars_id }}</td>
+                            <td>{{ car.id }}</td>
                             <td class="w-25">
-                                <img src="{{ cars.image.url }}" alt="">
+                                <img src="{{ car.image.url }}" alt="" style="width: 250px; height: 150px;">
                             </td>
-                            <td>{{ cars.brand }}</td>
-                            <td>{{ cars.location }}</td>
+                            <td>{{ car.brand }}</td>
+                            <td>{{ car.location }}</td>
+                            <td><a href="{% url 'show_cars' car.id %}" class="btn btn-light">More details</a></td>
                         </tr>
                     {% endfor %}
                     </tbody>

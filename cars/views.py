@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Cars, Map
+from .models import Cars
 from .forms import CarForm
 from map.forms import MapForm
 from django.contrib import messages
@@ -17,39 +17,41 @@ def list_cars(request):
     if car_form.is_valid():
         car_form.save()
         messages.success(request, 'Car successfully added')
+        cars = Cars.objects.all()
     return render(request, 'functions/list_cars.html', {'cars': cars, 'car_form': car_form, 'map_form': map_form})
 
 
-"""def list_map(request):
+def list_map(request):
     form = MapForm()
-    return render(request, 'functions/list_cars.html', {'form': form})"""
+    return render(request, 'functions/list_cars.html', {'form': form})
+
 
 """Update car"""
 
 
 def show_cars(request, cars_id):
     try:
-        cars = Cars.objects.get(pk=cars_id)
+        car = Cars.objects.get(pk=cars_id)
     except Cars.DoesNotExist:
         messages.error(request, 'There is no car with this id!')
         return redirect(list_cars)
     form = CarForm(initial={
-        'brand': cars.brand,
-        'model': cars.model,
-        'image': cars.image,
-        'ps': cars.ps,
-        'details': cars.details,
-        'location': cars.location,
+        'brand': car.brand,
+        'model': car.model,
+        'image': car.image,
+        'ps': car.ps,
+        'details': car.details,
+        'location': car.location,
     })
     if request.method == 'POST':
-        form = CarForm(request.POST, request.FILES, instance=cars)
+        form = CarForm(request.POST, request.FILES, instance=car)
         if form.is_valid():
-            cars.brand = form.cleaned_data['first_name']
-            cars.model = form.cleaned_data['last_name']
-            cars.image = form.cleaned_data['image']
-            cars.ps = form.cleaned_data['ps']
-            cars.details = form.cleaned_data['details']
-            cars.location = form.cleaned_data['location']
-            cars.save()
+            car.brand = form.cleaned_data['first_name']
+            car.model = form.cleaned_data['last_name']
+            car.image = form.cleaned_data['image']
+            car.ps = form.cleaned_data['ps']
+            car.details = form.cleaned_data['details']
+            car.location = form.cleaned_data['location']
+            car.save()
         messages.success(request, 'Car successfully updated')
-    return render(request, 'functions/show_cars.html', {'cars': cars, 'form': form})
+    return render(request, 'functions/show_cars.html', {'form': form, 'car': car})

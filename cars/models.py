@@ -8,7 +8,7 @@ class Cars(models.Model):
     ps = models.IntegerField()
     details = models.CharField(max_length=255)
     image = models.ImageField(upload_to='cars')
-    location = models.ForeignKey(Map, on_delete=Map)
+    location = models.ForeignKey(Map, on_delete=models.RESTRICT)
 
     def __str__(self):
         return '{}{}'.format(self.brand, self.model, self.ps, self.details, self.image, self.location)
