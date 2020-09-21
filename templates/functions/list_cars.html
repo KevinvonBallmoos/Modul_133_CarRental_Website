@@ -3,6 +3,10 @@
 
 <head>
     <link rel="stylesheet" href="{% static 'css/cars.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Login</title>
 </head>
 
@@ -259,6 +263,7 @@
                         <th scope="col">Brand</th>
                         <th scope="col">Location</th>
                         <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -270,7 +275,13 @@
                             </td>
                             <td>{{ car.brand }}</td>
                             <td>{{ car.location }}</td>
-                            <td><a href="{% url 'show_cars' car.id %}" class="btn btn-light">More details</a></td>
+                            <td><a href="{% url 'show_cars' car.id %}" class="btn btn-light">More details</a>
+                                <br>
+                                <br>
+                                <button type="button" class="btn btn-success" style="width: max-content"
+                                            data-toggle="modal"
+                                            data-target="#modalUpdateLocation" >Update Location</button></td>
+                               <td><button type="button" class="btn btn-danger">Delete</button></td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -278,5 +289,104 @@
             </div>
         </div>
     </div>
+
+    <!-- Update Location -->
+
+    <div class="modal fade right" id="modalUpdateLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true" data-backdrop="false">
+        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
+            <div class="modal-content">
+
+                <!--Header-->
+                <div class="modal-header" style="background-color: #005cbf">
+                    <h4 class="heading">Update your Location
+                    </h4>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+
+                <!--Body-->
+                <form method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="modal-body text-center">
+                        <div style="margin-left:115px ">
+
+                            <!-- plz -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ map_form.plz.id_for_label }}">
+                                        <input type="text" name="{{ map_form.plz.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="PLZ" id="{{ map_form.plz.id_for_label }}"
+                                               value="{{ site.plz }}"
+                                        >
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- location -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ map_form.location.id_for_label }}">
+                                        <input type="text" name="{{ map_form.location.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Location" id="{{ map_form.location.id_for_label }}"
+                                               value="{{ site.location }}"
+                                        >
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- address -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ map_form.address.id_for_label }}">
+                                        <input type="text" name="{{ map_form.address.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Address" id="{{ map_form.address.id_for_label }}"
+                                               value="{{ site.address }}"
+                                        >
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- country -->
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <div class="input-group-append">
+                                    </div>
+                                    <label style="height: 30px;" for="{{ map_form.country.id_for_label }}">
+                                        <input type="text" name="{{ map_form.country.html_name }}"
+                                               class="form-control input_pass"
+                                               placeholder="Country" id="{{ map_form.country.id_for_label }}"
+                                               value="{{ site.country }}"
+                                        >
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <i class="fas fa-car"></i>
+                            </div>
+                        </div>
+
+                        <!--Footer-->
+                        <div class="modal-footer justify-content-center" style="margin-right: 45px;">
+                            <button type="submit" class="btn btn-primary">Update Location</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
