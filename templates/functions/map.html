@@ -68,6 +68,7 @@
             <table class="table table-image">
                 <thead>
                 <tr>
+                    <th scope="col">ID</th>
                     <th scope="col">PLZ</th>
                     <th scope="col">Location</th>
                     <th scope="col">Address</th>
@@ -78,6 +79,7 @@
                 <tbody>
                 {% for site in sites %}
                     <tr>
+                        <td>{{ site.ID }}</td>
                         <td>{{ site.plz }}</td>
                         <td>{{ site.location }}</td>
                         <td>{{ site.address }}</td>

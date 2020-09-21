@@ -53,4 +53,6 @@ def show_map(request, map_id):
         site.country = map_form.cleaned_data['country']
         site.save()
     messages.success(request, 'Location successfully updated')
-    return render('functions/list_cars.html', {'map_form': map_form, 'site': site})
+    return render('functions/map.html', {'map_form': map_form, 'site': site})
+
+

@@ -52,3 +52,19 @@ def show_cars(request, cars_id):
             car.save()
         messages.success(request, 'Car successfully updated')
     return render(request, 'functions/show_cars.html', {'car_form': car_form, 'car': car})
+
+
+"""Update car"""
+
+
+def delete_cars(request, cars_id):
+    try:
+        car = Map.objects.get(pk=cars_id)
+        if Map.objects.filter(cars=car):
+            messages.error(request, 'This car has still locationd crossed<.')
+        else:
+            car.delete()
+            messages.success(request, 'Successfully deleted')
+    except Cars.DoesNotExist:
+        messages.success(request, 'There is no car with this id!')
+    return redirect('cars')

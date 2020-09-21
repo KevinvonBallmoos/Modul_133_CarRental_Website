@@ -252,7 +252,6 @@
             Add a new Car
         </button>
 
-
         <div class="row">
             <div class="col-12">
                 <table class="table table-image">
@@ -281,7 +280,7 @@
                                 <button type="button" class="btn btn-success" style="width: max-content"
                                             data-toggle="modal"
                                             data-target="#modalUpdateLocation" >Update Location</button></td>
-                               <td><button type="button" class="btn btn-danger">Delete</button></td>
+                               <td><a href="{% url 'delete_cars' car.id %}" class="btn btn-danger" type="button"></a>Delete</td>
                         </tr>
                     {% endfor %}
                     </tbody>
