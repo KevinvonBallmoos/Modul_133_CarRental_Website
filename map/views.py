@@ -61,4 +61,4 @@ def delete_map(request, site_id):
         messages.success(request, 'Location successfully deleted.')
     except Map.DoesNotExist:
         messages.error(request, 'There is no location with this id.')
-    return redirect('sites')
+    return redirect('map')
