@@ -18,17 +18,16 @@ def list_cars(request):
     if car_form.is_valid():
         car_form.save()
         messages.success(request, 'Car successfully added')
-        cars = Cars.objects.all()
-    return render(request, 'functions/list_cars.html', {'cars': cars, 'car_form': car_form, 'map_form': map_form,
-                                                        'sites': sites})
+    return render(request, 'functions/list_cars.html', {'cars': cars, 'car_form': car_form, 'sites': sites, 'map_form':
+                                                        map_form})
 
 
 """Update car"""
 
 
-def show_cars(request, cars_id):
+def show_cars(request, car_id):
     try:
-        car = Cars.objects.get(pk=cars_id)
+        car = Cars.objects.get(pk=car_id)
     except Cars.DoesNotExist:
         messages.error(request, 'There is no car with this id!')
         return redirect(list_cars)
@@ -57,14 +56,11 @@ def show_cars(request, cars_id):
 """Update car"""
 
 
-def delete_cars(request, cars_id):
+def delete_cars(request, car_id):
     try:
-        car = Map.objects.get(pk=cars_id)
-        if Map.objects.filter(cars=car):
-            messages.error(request, 'This car has still locationd crossed<.')
-        else:
-            car.delete()
-            messages.success(request, 'Successfully deleted')
+        car = Cars.objects.get(pk=car_id)
+        car.delete()
+        messages.success(request, 'Successfully deleted')
     except Cars.DoesNotExist:
         messages.success(request, 'There is no car with this id!')
-    return redirect('cars')
+    return redirect('list_cars')
