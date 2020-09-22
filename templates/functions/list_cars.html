@@ -278,9 +278,12 @@
                                 <br>
                                 <br>
                                 <button type="button" class="btn btn-success" style="width: max-content"
-                                            data-toggle="modal"
-                                            data-target="#modalUpdateLocation" >Update Location</button></td>
-                               <td><a href="{% url 'delete_cars' car.id %}" class="btn btn-danger" type="button">Delete</a></td>
+                                        data-toggle="modal"
+                                        data-target="#modalUpdateLocation">Update Location
+                                </button>
+                            </td>
+                            <td><a href="{% url 'delete_cars' car.id %}" class="btn btn-danger" type="button">Delete</a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -289,6 +292,41 @@
         </div>
     </div>
 
+    <h4>Locations</h4>
+
+  <!-- View of all locations -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-image">
+                    <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">PLZ</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Country</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for site in sites %}
+                        <tr>
+                            <td>{{ site.ID }}</td>
+                            <td>{{ site.plz }}</td>
+                            <td>{{ site.location }}</td>
+                            <td>{{ site.address }}</td>
+                            <td>{{ site.country }}</td>
+                            <td>
+                                <button type="button" class="btn btn-danger">Delete</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <!-- Update Location -->
 
     <div class="modal fade right" id="modalUpdateLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -307,7 +345,7 @@
                 </div>
 
                 <!--Body-->
-                <form method="post" enctype="multipart/form-data" >
+                <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="modal-body text-center">
                         <div style="margin-left:115px ">
