@@ -42,18 +42,11 @@
                 </li>
             </ul>
 
-            <!-- search function-->
+            <!-- logout -->
             <form class="form-inline my-2 my-lg-0" method="post">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="button" style="margin-right: 10px">Search
-                </button>
-                <button class="btn btn-outline-danger my-2 my-sm-0" type="button" style=";
-                 ">Filter
-                </button>
                 <button class="btn btn-outline-primary my-2 my-sm-0" style="margin-left:10px;margin-right: 100px;
                " type="submit"><a href="{% url 'logout' %}" style="text-decoration: none; ">Logout</a>
                 </button>
-
             </form>
         </div>
     </nav>
@@ -66,12 +59,14 @@
             <div id="next-to-image">
                 <img src="{{ car.image.url }}" alt=""
                      style="width: 600px; height: 375px; margin-top: 20px; float: left;">
-                <ul style="margin-left: 650px; margin-top: 100px" class="color">
+                <ul style="margin-left: 650px; margin-top: 60px" class="color">
                     <li>PS: {{ car.ps }}</li>
                     <br>
                     <li>Details: {{ car.details }}</li>
                     <br>
-                    <li>Ort: {{ car.location }}</li>
+                    <li>Location: {{ car.location }}</li>
+                    <br>
+                    <li>Type of Car: {{ car.cartypes }}</li>
                 </ul>
             </div>
             <button type="button" class="btn btn-success" style="width: max-content; margin-top: 20px"
@@ -106,7 +101,7 @@
                     <div class="modal-body text-center">
 
                         <!-- location -->
-
+                        <h6 style="margin-right: 170px">Location </h6>
                         <div style="margin-left:115px ">
                             <div class="form-group">
                                 <div class="input-group mb-1">
@@ -115,6 +110,22 @@
                                                 id="{{ car_form.location.id_for_label }}"
                                                 style="width: 200px; height: 38px">
                                             {% for x, y in car_form.fields.location.choices %}
+                                                <option value="{{ x }}">{{ y }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- carTypes -->
+                            <h6 style="margin-right: 260px">Type of Car</h6>
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+                                    <label style="height: 30px;" for="{{ car_form.cartypes.id_for_label }}">
+                                        <select name="{{ car_form.cartypes.html_name }}"
+                                                id="{{ car_form.cartypes.id_for_label }}"
+                                                style="width: 200px; height: 38px">
+                                            {% for x, y in car_form.fields.cartypes.choices %}
                                                 <option value="{{ x }}">{{ y }}</option>
                                             {% endfor %}
                                         </select>

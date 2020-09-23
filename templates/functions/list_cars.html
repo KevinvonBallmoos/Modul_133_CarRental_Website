@@ -52,6 +52,7 @@
                         <p style="color: darkred">Please Check if your Location is available, otherwise you can
                             create a new one in : Add location</p>
                         <!-- location -->
+                        <h6 style="margin-right: 170px">Location </h6>
                         <div style="margin-left:115px ">
                             <div class="form-group">
                                 <div class="input-group mb-1">
@@ -71,6 +72,22 @@
                                 </div>
                             </div>
 
+                            <!-- carTypes -->
+                            <h6 style="margin-right: 260px">Type of Car</h6>
+                            <div class="form-group">
+                                <div class="input-group mb-1">
+
+                                    <label style="height: 30px;" for="{{ car_form.cartypes.id_for_label }}">
+                                        <select name="{{ car_form.cartypes.html_name }}"
+                                                id="{{ car_form.cartypes.id_for_label }}"
+                                                style="width: 200px; height: 38px">
+                                            {% for x, y in car_form.fields.cartypes.choices %}
+                                                <option value="{{ x }}">{{ y }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </label>
+                                </div>
+                            </div>
 
                             <!-- brand -->
                             <div class="form-group">
@@ -119,8 +136,8 @@
                                     </label>
                                 </div>
                             </div>
-
                         </div>
+
 
                         <!-- image -->
                         <div style="margin-left: 60px">
@@ -253,36 +270,41 @@
         <a href="#toLocations" class="btn btn-light">To Locations</a>
         <div class="row">
             <div class="col-12">
-                <table class="table table-image">
-                    <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Brand</th>
-                        <th scope="col">Location</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for car in cars %}
+                <div class="container">
+                    <table class="table table-image" id="myTable">
+                        <thead>
                         <tr>
-                            <td>{{ car.id }}</td>
-                            <td class="w-25">
-                                <img src="{{ car.image.url }}" alt="" style="width: 250px; height: 150px;">
-                            </td>
-                            <td>{{ car.brand }}</td>
-                            <td>{{ car.location }}</td>
-                            <td><a href="{% url 'show_cars' car.id %}" class="btn btn-light">More details</a>
-                                <br>
-                                <br>
-                            </td>
-                            <td><a href="{% url 'delete_cars' car.id %}" class="btn btn-danger" type="button">Delete</a>
-                            </td>
+                            <th scope="col">Image</th>
+                            <th scope="col">Brand</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Car Type</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                        {% for car in cars %}
+
+                            <tr>
+                                <td class="w-25">
+                                    <img src="{{ car.image.url }}" alt="" style="width: 250px; height: 150px;">
+                                </td>
+                                <td class="filterTd brand">{{ car.brand }}</td>
+                                <td class="filterTd location">{{ car.location }}</td>
+                                <td class="filterTd carType">{{ car.cartypes }}</td>
+                                <td><a href="{% url 'show_cars' car.id %}" class="btn btn-light">More details</a>
+                                    <br>
+                                    <br>
+                                </td>
+                                <td><a href="{% url 'delete_cars' car.id %}" class="btn btn-danger"
+                                       type="button">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

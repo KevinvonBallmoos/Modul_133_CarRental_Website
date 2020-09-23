@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cars
+from .models import Cars, CarTypes
 
 
 class CarForm(forms.ModelForm):
@@ -8,3 +8,7 @@ class CarForm(forms.ModelForm):
         fields = '__all__'
 
 
+class CarTypeForm(forms.ModelForm):
+    class Meta:
+        model = CarTypes
+        fields = '__all__'

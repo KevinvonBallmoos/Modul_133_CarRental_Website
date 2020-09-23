@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from .models import Cars, Map
-from .forms import CarForm
+from .models import Cars, Map, CarTypes
+from .forms import CarForm, CarTypeForm
 from map.forms import MapForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -38,6 +38,7 @@ def show_cars(request, car_id):
         'ps': car.ps,
         'details': car.details,
         'location': car.location,
+        'cartypes': car.cartypes,
     })
     if request.method == 'POST':
         car_form = CarForm(request.POST, request.FILES, instance=car)
@@ -48,6 +49,7 @@ def show_cars(request, car_id):
             car.ps = car_form.cleaned_data['ps']
             car.details = car_form.cleaned_data['details']
             car.location = car_form.cleaned_data['location']
+            car.cartypes = car_form.cleaned_data['cartypes']
             car.save()
         messages.success(request, 'Car successfully updated')
     return render(request, 'functions/show_cars.html', {'car_form': car_form, 'car': car})
