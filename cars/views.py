@@ -38,7 +38,7 @@ def show_cars(request, car_id):
         'ps': car.ps,
         'details': car.details,
         'location': car.location,
-        'cartypes': car.cartypes,
+        'types': car.types,
     })
     if request.method == 'POST':
         car_form = CarForm(request.POST, request.FILES, instance=car)
@@ -49,7 +49,7 @@ def show_cars(request, car_id):
             car.ps = car_form.cleaned_data['ps']
             car.details = car_form.cleaned_data['details']
             car.location = car_form.cleaned_data['location']
-            car.cartypes = car_form.cleaned_data['cartypes']
+            car.types = car_form.cleaned_data['types']
             car.save()
         messages.success(request, 'Car successfully updated')
     return render(request, 'functions/show_cars.html', {'car_form': car_form, 'car': car})

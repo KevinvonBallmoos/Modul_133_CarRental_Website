@@ -77,9 +77,9 @@
                             <div class="form-group">
                                 <div class="input-group mb-1">
 
-                                    <label style="height: 30px;" for="{{ car_form.cartypes.id_for_label }}">
-                                        <select name="{{ car_form.cartypes.html_name }}"
-                                                id="{{ car_form.cartypes.id_for_label }}"
+                                    <label style="height: 30px;" for="{{ car_form.types.id_for_label }}">
+                                        <select name="{{ car_form.types.html_name }}"
+                                                id="{{ car_form.types.id_for_label }}"
                                                 style="width: 200px; height: 38px">
                                             {% for x, y in car_form.fields.cartypes.choices %}
                                                 <option value="{{ x }}">{{ y }}</option>
@@ -274,8 +274,8 @@
                     <table class="table table-image" id="myTable">
                         <thead>
                         <tr>
-                            <th scope="col">Image</th>
                             <th scope="col">Brand</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Location</th>
                             <th scope="col">Car Type</th>
                             <th scope="col"></th>
@@ -287,12 +287,12 @@
                         {% for car in cars %}
 
                             <tr>
+                            <td class="filterTd brand">{{ car.brand }}</td>
                                 <td class="w-25">
                                     <img src="{{ car.image.url }}" alt="" style="width: 250px; height: 150px;">
                                 </td>
-                                <td class="filterTd brand">{{ car.brand }}</td>
                                 <td class="filterTd location">{{ car.location }}</td>
-                                <td class="filterTd carType">{{ car.cartypes }}</td>
+                                <td class="filterTd carType">{{ car.types }}</td>
                                 <td><a href="{% url 'show_cars' car.id %}" class="btn btn-light">More details</a>
                                     <br>
                                     <br>
@@ -336,9 +336,9 @@
                             <td>{{ site.location }}</td>
                             <td>{{ site.address }}</td>
                             <td>{{ site.country }}</td>
-                            <td><a href="{% url 'update_map' site.id %}" class="btn btn-success"
+                            <td><button class="btn btn-success"
                                    data-toggle="modal"
-                                   data-target="#modalUpdateLocation">Update</a>
+                                   data-target="#modalUpdateLocation">Update</button>
                             </td>
                             <td><a href="{% url 'delete_map' site.id %}" class="btn btn-danger" type="button"
                                    style="margin-left: -100px; margin-right: 30px">Delete</a>

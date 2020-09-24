@@ -16,7 +16,7 @@ class Cars(models.Model):
     details = models.CharField(max_length=255)
     image = models.ImageField(upload_to='cars')
     location = models.ForeignKey(Map, on_delete=models.RESTRICT)
-    cartypes = models.ForeignKey(CarTypes, on_delete=models.RESTRICT)
+    types = models.ForeignKey(CarTypes, on_delete=models.RESTRICT)
 
     def __str__(self):
         return '{}{}'.format(self.brand, self.model)
