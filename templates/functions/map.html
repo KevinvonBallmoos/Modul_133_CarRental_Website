@@ -15,10 +15,23 @@
           type="text/css"/>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-
 </head>
 
 <body style="background-color: #60a3bc">
+
+<!-- error alert -->
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ error }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
 
 <!-- navbar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width:auto">
@@ -64,7 +77,6 @@
 </div>
 
 <!-- Additional Script -->
-
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoic3Vic2NhcGVyIiwiYSI6ImNrZXdpbmpvODQzb2MycnBpb2VjZWVkNGcifQ.UsJOjWVXbrP7wmlIzWb2wQ';
     var map = new mapboxgl.Map({

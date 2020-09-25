@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Cars, Map, CarTypes
-from .forms import CarForm, CarTypeForm
+from .models import Cars, Map
+from .forms import CarForm
 from map.forms import MapForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+
 
 """Add a new Car"""
 
@@ -55,7 +55,7 @@ def show_cars(request, car_id):
     return render(request, 'functions/show_cars.html', {'car_form': car_form, 'car': car})
 
 
-"""Update car"""
+"""Delete car"""
 
 
 def delete_cars(request, car_id):

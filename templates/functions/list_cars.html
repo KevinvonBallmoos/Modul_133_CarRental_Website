@@ -282,12 +282,10 @@
                             <th scope="col"></th>
                         </tr>
                         </thead>
-
                         <tbody>
                         {% for car in cars %}
-
                             <tr>
-                            <td class="filterTd brand">{{ car.brand }}</td>
+                                <td class="filterTd brand">{{ car.brand }}</td>
                                 <td class="w-25">
                                     <img src="{{ car.image.url }}" alt="" style="width: 250px; height: 150px;">
                                 </td>
@@ -336,9 +334,11 @@
                             <td>{{ site.location }}</td>
                             <td>{{ site.address }}</td>
                             <td>{{ site.country }}</td>
-                            <td><button class="btn btn-success"
-                                   data-toggle="modal"
-                                   data-target="#modalUpdateLocation">Update</button>
+                            <td>
+                                <button class="btn btn-success"
+                                        data-toggle="modal"
+                                        data-target="#modalUpdateLocation">Update
+                                </button>
                             </td>
                             <td><a href="{% url 'delete_map' site.id %}" class="btn btn-danger" type="button"
                                    style="margin-left: -100px; margin-right: 30px">Delete</a>
@@ -352,7 +352,6 @@
     </div>
 
     <!-- Update Location -->
-
     <div class="modal fade right" id="modalUpdateLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
          aria-hidden="true" data-backdrop="false">
         <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">

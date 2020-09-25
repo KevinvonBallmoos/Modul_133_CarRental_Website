@@ -58,6 +58,9 @@ def update_map(request, site_id):
     return redirect('functions/list_cars', {'map_form': map_form})
 
 
+"""Delete Location"""
+
+
 def delete_map(request, site_id):
     try:
         site = Map.objects.get(pk=site_id)
