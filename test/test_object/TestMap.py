@@ -1,15 +1,15 @@
 from map.models import Map
 
 
-class TestLocation:
-    plz = '8000'
-    location = 'st-gallen'
-    address = 'sdjfa'
+class TestMap:
+    plz = '8645'
+    location = 'Jona'
+    address = 'Erlenstrasse 109'
     country = 'Schweiz'
 
     def __init__(self):
         try:
-            Map.objects.get(plz=self.plz)
+            Map.objects.get(location=self.location)
         except Map.DoesNotExist:
             Map.objects.create(
                 plz=self.plz,
@@ -19,4 +19,4 @@ class TestLocation:
             )
 
     def get_test_location(self):
-        return Map.objects.get(plz=self.plz)
+        return Map.objects.get(location=self.location)

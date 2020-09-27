@@ -1,5 +1,5 @@
 from cars.models import Cars
-from test.test_object.TestLocation import TestLocation
+from test.test_object.TestMap import TestMap
 from test.test_object.TestCarTypes import TestCarTypes
 
 
@@ -8,8 +8,8 @@ class TestCars:
     model = 'A3'
     ps = '200'
     details = 'Ledersitze'
-    image = 'default.png'
-    test_location = TestLocation()
+    image = 'AudiA3.jpg'
+    test_location = TestMap()
     test_cartypes = TestCarTypes()
 
     def __init__(self):
