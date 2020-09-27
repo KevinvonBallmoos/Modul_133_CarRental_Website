@@ -81,7 +81,7 @@
                                         <select name="{{ car_form.types.html_name }}"
                                                 id="{{ car_form.types.id_for_label }}"
                                                 style="width: 200px; height: 38px">
-                                            {% for x, y in car_form.fields.cartypes.choices %}
+                                            {% for x, y in car_form.fields.types.choices %}
                                                 <option value="{{ x }}">{{ y }}</option>
                                             {% endfor %}
                                         </select>
@@ -436,7 +436,7 @@
 
                         <!--Footer-->
                         <div class="modal-footer justify-content-center" style="margin-right: 45px;">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <a href="" type="submit" class="btn btn-primary">Save</a>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>

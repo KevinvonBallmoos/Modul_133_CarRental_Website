@@ -2,8 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Map
 from cars.models import Cars
 from .forms import MapForm
-from cars.forms import CarForm
-from .forms import MapForm
 from django.contrib import messages
 from cars.views import list_cars
 
@@ -12,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 """Map shows"""
 
 
+@login_required()
 def default_map(request):
     mapbox_access_token = 'pk.eyJ1Ijoic3Vic2NhcGVyIiwiYSI6ImNrZXdpbmpvODQzb2MycnBpb2VjZWVkNGcifQ.UsJOjWVXbrP7wmlIzWb2wQ'
     return render(request, 'functions/map.html', {'mapbox_access_token': mapbox_access_token})
@@ -20,6 +19,7 @@ def default_map(request):
 """Add a new Location"""
 
 
+@login_required()
 def list_map(request):
 
     map_form = MapForm()
@@ -28,12 +28,13 @@ def list_map(request):
     if map_form.is_valid():
         map_form.save()
         messages.success(request, 'Location successfully added')
-    return redirect('/functions/list_cars')
+    return redirect('/functions/list_cars', update_map)
 
 
 """Update Location"""
 
 
+@login_required()
 def update_map(request, site_id):
     try:
         site = Map.objects.get(pk=site_id)
@@ -55,12 +56,13 @@ def update_map(request, site_id):
             site.country = map_form.cleaned_data['country']
             site.save()
         messages.success(request, 'Location successfully updated.')
-    return redirect('functions/list_cars', {'map_form': map_form})
+    return render(request, 'functions/list_cars.html', {'map_form': map_form})
 
 
 """Delete Location"""
 
 
+@login_required()
 def delete_map(request, site_id):
     try:
         site = Map.objects.get(pk=site_id)

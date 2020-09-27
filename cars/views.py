@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Cars, Map
 from .forms import CarForm
@@ -8,6 +9,7 @@ from django.contrib import messages
 """Add a new Car"""
 
 
+@login_required()
 def list_cars(request):
     cars = Cars.objects.all()
     sites = Map.objects.all()
@@ -25,6 +27,7 @@ def list_cars(request):
 """Update car"""
 
 
+@login_required()
 def show_cars(request, car_id):
     try:
         car = Cars.objects.get(pk=car_id)
@@ -58,6 +61,7 @@ def show_cars(request, car_id):
 """Delete car"""
 
 
+@login_required()
 def delete_cars(request, car_id):
     try:
         car = Cars.objects.get(pk=car_id)
