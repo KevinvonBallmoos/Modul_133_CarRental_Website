@@ -54,6 +54,7 @@ def show_cars(request, car_id):
             car.location = car_form.cleaned_data['location']
             car.types = car_form.cleaned_data['types']
             car.save()
+
         messages.success(request, 'Car successfully updated')
     return render(request, 'functions/show_cars.html', {'car_form': car_form, 'car': car})
 
