@@ -45,12 +45,11 @@ class CarsAndMapViews(TestCase):
         self.assertTemplateUsed(response, 'functions/list_cars.html')
         self.assertContains(response, self.test_cars.brand)
         self.assertContains(response, self.test_cars.test_location.get_test_location())
-        self.assertContains(response, self.test_cars.test_cartypes.get_test_cartypes())
         self.assertContains(response, 'Create new Car')
 
     def test_list_map(self):
         self.login_user()
         response = self.client.get(reverse('list_map'))
-        self.assertRedirects(response, 'list_cars')
+        self.assertRedirects(response, 'functions/list_cars')
         self.assertContains(response, self.test_location.location)
         self.assertContains(response, 'Create new Location')

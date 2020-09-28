@@ -28,7 +28,7 @@ def list_map(request):
     if map_form.is_valid():
         map_form.save()
         messages.success(request, 'Location successfully added')
-    return redirect('/functions/list_cars', update_map)
+    return redirect('/functions/list_cars')
 
 
 """Update Location"""

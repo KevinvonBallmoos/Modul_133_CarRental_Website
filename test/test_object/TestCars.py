@@ -1,6 +1,5 @@
 from cars.models import Cars
 from test.test_object.TestMap import TestMap
-from test.test_object.TestCarTypes import TestCarTypes
 
 
 class TestCars:
@@ -10,7 +9,7 @@ class TestCars:
     details = 'Ledersitze'
     image = 'AudiA3.jpg'
     test_location = TestMap()
-    test_cartypes = TestCarTypes()
+    types = "Limousine"
 
     def __init__(self):
         try:
@@ -23,7 +22,7 @@ class TestCars:
                 details=self.details,
                 image=self.image,
                 location=self.test_location.get_test_location(),
-                types=self.test_cartypes.get_test_cartypes()
+                types=self.types
             )
 
     def get_test_cars(self):

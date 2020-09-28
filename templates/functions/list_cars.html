@@ -73,19 +73,15 @@
                             </div>
 
                             <!-- carTypes -->
-                            <h6 style="margin-right: 260px">Type of Car</h6>
                             <div class="form-group">
                                 <div class="input-group mb-1">
-
                                     <label style="height: 30px;" for="{{ car_form.types.id_for_label }}">
-                                        <select name="{{ car_form.types.html_name }}"
-                                                id="{{ car_form.types.id_for_label }}"
-                                                style="width: 200px; height: 38px">
-                                            {% for x, y in car_form.fields.types.choices %}
-                                                <option value="{{ x }}">{{ y }}</option>
-                                            {% endfor %}
-                                        </select>
+                                        <input type="text" name="{{ car_form.types.html_name }}"
+                                               class="form-control"
+                                               placeholder="Car Type" id="{{ car_form.types.id_for_label }}"
+                                               required>
                                     </label>
+                                    <h8>SUV, Limousine or E-Car is preferred</h8>
                                 </div>
                             </div>
 
@@ -94,7 +90,7 @@
                                 <div class="input-group mb-1">
                                     <label style="height: 30px;" for="{{ car_form.brand.id_for_label }}">
                                         <input type="text" name="{{ car_form.brand.html_name }}"
-                                               class="form-control input_pass"
+                                               class="form-control"
                                                placeholder="Brand" id="{{ car_form.brand.id_for_label }}"
                                                required>
                                     </label>
