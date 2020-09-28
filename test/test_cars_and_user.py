@@ -2,7 +2,6 @@ from django.test import TestCase
 from .test_object.TestCars import TestCars
 from .test_object.TestUser import TestUser
 from .test_object.TestMap import TestMap
-from .test_object.TestCarTypes import TestCarTypes
 from django.urls import reverse
 
 
@@ -10,7 +9,6 @@ class CarsAndMapViews(TestCase):
     def setUp(self):
         self.test_user = TestUser()
         self.test_location = TestMap()
-        self.test_cartypes = TestCarTypes()
         self.test_cars = TestCars()
 
     def login_user(self):
