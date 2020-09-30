@@ -119,13 +119,15 @@
                         <div style="margin-left:115px ">
                             <div class="form-group">
                                 <div class="input-group mb-1">
-                                    <label style="height: 30px;" for="{{ car_form.location.id_for_label }}">
+                                    <label style="height: 30px;" for="{{ car_form.location.id_for_label }}" >
                                         <select name="{{ car_form.location.html_name }}"
                                                 id="{{ car_form.location.id_for_label }}"
-                                                style="width: 200px; height: 38px">
+                                                style="width: 200px; height: 38px"
+                                        >
                                             {% for x, y in car_form.fields.location.choices %}
                                                 <option value="{{ x }}">{{ y }}</option>
                                             {% endfor %}
+
                                         </select>
                                     </label>
                                 </div>
