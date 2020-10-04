@@ -331,10 +331,7 @@
                             <td>{{ site.address }}</td>
                             <td>{{ site.country }}</td>
                             <td>
-                                <button class="btn btn-success"
-                                        data-toggle="modal"
-                                        data-target="#modalUpdateLocation">Update Location
-                                </button>
+                                <a href="{% url 'show_map' site.id %}" class="btn btn-light" type="submit">Show Location</a>
                             </td>
                             <td><a href="{% url 'delete_map' site.id %}" class="btn btn-danger" type="button"
                                    style="margin-left: -100px; margin-right: 30px">Delete</a>
@@ -346,100 +343,5 @@
             </div>
         </div>
     </div>
-
-    <!-- Update Location -->
-    <div class="modal fade right" id="modalUpdateLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" data-backdrop="false">
-        <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info" role="document">
-            <div class="modal-content">
-
-                <!--Header-->
-                <div class="modal-header" style="background-color: #005cbf">
-                    <h4 class="heading">Update your Location
-                    </h4>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true" class="white-text">&times;</span>
-                    </button>
-                </div>
-
-                <!--Body-->
-                <form method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <div class="modal-body text-center">
-                        <div style="margin-left:115px ">
-
-                            <!-- plz -->
-                            <div class="form-group">
-                                <div class="input-group mb-1">
-                                    <div class="input-group-append">
-                                    </div>
-                                    <label style="height: 30px;" for="{{ map_form.plz.id_for_label }}">
-                                        <input type="text" name="{{ map_form.plz.html_name }}"
-                                               class="form-control input_pass"
-                                               placeholder="PLZ" id="{{ map_form.plz.id_for_label }}"
-                                               value="{{ site.plz }}"
-                                        >
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- location -->
-                            <div class="form-group">
-                                <div class="input-group mb-1">
-                                    <div class="input-group-append">
-                                    </div>
-                                    <label style="height: 30px;" for="{{ map_form.location.id_for_label }}">
-                                        <input type="text" name="{{ map_form.location.html_name }}"
-                                               class="form-control input_pass"
-                                               placeholder="Location" id="{{ map_form.location.id_for_label }}"
-                                               value="{{ site.location }}"
-                                        >
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- address -->
-                            <div class="form-group">
-                                <div class="input-group mb-1">
-                                    <div class="input-group-append">
-                                    </div>
-                                    <label style="height: 30px;" for="{{ map_form.address.id_for_label }}">
-                                        <input type="text" name="{{ map_form.address.html_name }}"
-                                               class="form-control input_pass"
-                                               placeholder="Address" id="{{ map_form.address.id_for_label }}"
-                                               value="{{ site.address }}"
-                                        >
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- country -->
-                            <div class="form-group">
-                                <div class="input-group mb-1">
-                                    <div class="input-group-append">
-                                    </div>
-                                    <label style="height: 30px;" for="{{ map_form.country.id_for_label }}">
-                                        <input type="text" name="{{ map_form.country.html_name }}"
-                                               class="form-control input_pass"
-                                               placeholder="Country" id="{{ map_form.country.id_for_label }}"
-                                               value="{{ site.country }}"
-                                        >
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--Footer-->
-                        <div class="modal-footer justify-content-center" style="margin-right: 45px;">
-                            <a href="#" type="submit" class="btn btn-primary">Save</a>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
 
 {% endblock %}

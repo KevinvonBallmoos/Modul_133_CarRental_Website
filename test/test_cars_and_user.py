@@ -15,7 +15,7 @@ class CarsAndMapViews(TestCase):
         self.client.login(username=self.test_user, password=self.test_user.password)
 
     def check_template_use_base(self, response):
-        self.assertTemplateUsed(response, 'base_home/base.html')
+        self.assertTemplateUsed(response, 'base.html')
 
     def check_login_parts(self, response):
         self.assertTemplateUsed(response, 'registration/login.html')
@@ -48,6 +48,6 @@ class CarsAndMapViews(TestCase):
     def test_list_map(self):
         self.login_user()
         response = self.client.get(reverse('list_map'))
-        self.assertRedirects(response, 'functions/list_cars')
-        self.assertContains(response, self.test_location.location)
+        self.assertTemplateUsed(response, 'functions/list_cars.html')
+        self.assertRedirects(response,self.test_location.location, 'functions/list_cars')
         self.assertContains(response, 'Create new Location')

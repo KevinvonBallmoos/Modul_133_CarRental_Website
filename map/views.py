@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
+
+from cars.views import list_cars
 from .models import Map
 from cars.models import Cars
 from .forms import MapForm
 from django.contrib import messages
-from cars.views import list_cars
-
 from django.contrib.auth.decorators import login_required
 
 """Map shows"""
@@ -21,7 +21,6 @@ def default_map(request):
 
 @login_required()
 def list_map(request):
-
     map_form = MapForm()
     if request.method == 'POST':
         map_form = MapForm(request.POST)
@@ -35,7 +34,7 @@ def list_map(request):
 
 
 @login_required()
-def update_map(request, site_id):
+def show_map(request, site_id):
     try:
         site = Map.objects.get(pk=site_id)
     except Map.DoesNotExist:
@@ -56,7 +55,7 @@ def update_map(request, site_id):
             site.country = map_form.cleaned_data['country']
             site.save()
         messages.success(request, 'Location successfully updated.')
-    return render(request, 'functions/list_cars.html', {'map_form': map_form})
+    return render(request, 'functions/show_map.html', {'map_form': map_form, 'site': site})
 
 
 """Delete Location"""
