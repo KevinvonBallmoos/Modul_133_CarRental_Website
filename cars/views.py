@@ -6,11 +6,13 @@ from map.forms import MapForm
 from django.contrib import messages
 
 
-"""Add a new Car"""
-
-
 @login_required()
 def list_cars(request):
+    """
+    add car
+    param: user request
+    return: list_cars.html
+    """
     cars = Cars.objects.all()
     sites = Map.objects.all()
     car_form = CarForm()
@@ -24,11 +26,13 @@ def list_cars(request):
                                                         map_form})
 
 
-"""Update car"""
-
-
 @login_required()
 def show_cars(request, car_id):
+    """
+    update car
+    param: user request, car_id
+    returns: show_cars.html
+    """
     try:
         car = Cars.objects.get(pk=car_id)
     except Cars.DoesNotExist:
@@ -58,11 +62,13 @@ def show_cars(request, car_id):
     return render(request, 'functions/show_cars.html', {'car_form': car_form, 'car': car})
 
 
-"""Delete car"""
-
-
 @login_required()
 def delete_cars(request, car_id):
+    """
+    delete car
+    param: user request, car_id
+    return: redirect list_cars
+    """
     try:
         car = Cars.objects.get(pk=car_id)
         car.delete()

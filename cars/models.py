@@ -3,6 +3,10 @@ from map.models import Map
 
 
 class Cars(models.Model):
+    """
+    car model
+    return: brand and model as string
+    """
     brand = models.CharField(max_length=255)
     model = models.CharField(max_length=255)
     ps = models.IntegerField()

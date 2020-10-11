@@ -6,18 +6,20 @@ from project_car_rental.forms import SignUpForm
 from django.contrib import auth
 
 
-"""Home Page"""
-
-
 @login_required()
 def home(request):
+    """
+    home
+    """
     return render(request, 'base_home/home.html')
 
 
-"""SignUp"""
-
-
 def signup_view(request):
+    """
+    signUp
+    param: user request
+    returns: signup.html
+    """
     form = SignUpForm()
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -33,10 +35,12 @@ def signup_view(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
-"""Login"""
-
-
 def login_view(request):
+    """
+    login
+    param: user request
+    returns: login.html
+    """
     if request.method == 'POST':
         form = AuthenticationForm(request.POST)
         if form.is_valid():
@@ -46,9 +50,11 @@ def login_view(request):
     return render(request, 'registration/login.html')
 
 
-"""Logout"""
-
-
 def logout_view(request):
+    """
+    logout
+    param: user request
+    returns: logout.html
+    """
     auth.logout(request)
     return render(request, 'registration/logout.html')
