@@ -120,7 +120,7 @@
                                     <label style="height: 30px;" for="{{ car_form.location.id_for_label }}" >
                                         <select name="{{ car_form.location.html_name }}"
                                                 id="{{ car_form.location.id_for_label }}"
-                                                style="width: 200px; height: 38px"
+                                                style="width: 200px; height: 38px" required
                                         >
                                             {% for x, y in car_form.fields.location.choices %}
                                                 <option value="{{ x }}">{{ y }}</option>
@@ -214,7 +214,7 @@
                                         <input type="file" name="{{ car_form.image.html_name }}"
                                                class="form-control input_pass"
                                                id="{{ car_form.image.id_for_label }}"
-                                               value="{{ car.image }}"
+                                               value="{{ car.image }}" required
                                         >
                                     </label>
                                 </div>
